@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Toán Mầm Non - Học Mà Chơi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #FF5252;
+      --secondary-color: #4A90E2;
+      --accent-color: #2ECC71;
+      --text-color: #2D3748;
+      --correct-color: #2ECC71;
+      --wrong-color: #FF4757;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden; /* Prevent scrolling in landscape */
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #E0F7FA 0%, #FFF9C4 100%);
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      position: relative;
+    }
+
+    header {
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 48px;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-family: 'Fredoka One', cursive;
+      color: #FF4757;
+      font-size: 1.4rem;
+      text-shadow: 2px 2px 0px #FFF, 3px 3px 0px rgba(0,0,0,0.1);
+      white-space: nowrap;
+    }
+
+    .tab-container {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tab-button {
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border: 2px solid #FFF;
+      border-radius: 18px;
+      background: var(--secondary-color);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #2980B9, 0 6px 8px rgba(0,0,0,0.1);
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .tab-button:nth-child(2) {
+      background: #FF6B6B;
+      box-shadow: 0 4px 0 #C0392B, 0 6px 8px rgba(0,0,0,0.1);
+    }
+
+    .tab-button:nth-child(3) {
+      background: #2ECC71;
+      box-shadow: 0 4px 0 #27AE60, 0 6px 8px rgba(0,0,0,0.1);
+    }
+
+    .tab-button.active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+      filter: brightness(1.1);
+    }
+
+    .game-area {
+      width: 100%;
+      max-width: 960px;
+      height: calc(100vh - 64px);
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 20px;
+      padding: 10px 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      border: 3px solid #FFF;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .instruction {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #2C3E50;
+      text-align: center;
+      background: #FFF9C4;
+      padding: 4px 18px;
+      border-radius: 12px;
+      border: 2px dashed #FBC02D;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    #content-container {
+      width: 100%;
+      height: calc(100% - 36px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+
+    .flashcard {
+      background: #FFFFFF;
+      border-radius: 18px;
+      border: 4px solid #E0E0E0;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+
+    .question-card {
+      padding: 6px 20px;
+      width: 60%;
+      max-width: 480px;
+      height: 38%;
+      font-size: 2.8rem;
+      font-family: 'Fredoka One', cursive;
+      color: #2C3E50;
+      border-color: #4A90E2;
+      background: linear-gradient(180deg, #EBF5FB 0%, #FFFFFF 100%);
+    }
+
+    .question-card.match-mode {
+      border-color: #FF9800;
+      background: linear-gradient(180deg, #FFF8E1 0%, #FFFFFF 100%);
+      width: 45%;
+      height: 44%;
+    }
+
+    .objects-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .item-svg {
+      width: 50px;
+      height: 50px;
+      filter: drop-shadow(2px 4px 5px rgba(0,0,0,0.18));
+      animation: popIn 0.3s ease-out;
+    }
+
+    .item-svg-large {
+      width: 70px;
+      height: 70px;
+      filter: drop-shadow(3px 5px 8px rgba(0,0,0,0.2));
+    }
+
+    .answers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      width: 90%;
+      max-width: 820px;
+      height: 48%;
+    }
+
+    .answer-card {
+      height: 100%;
+      cursor: pointer;
+      font-size: 2.2rem;
+      font-family: 'Fredoka One', cursive;
+      color: #2C3E50;
+      border-color: #FF8A80;
+      background: #FFF;
+      box-shadow: 0 6px 0 #FFCDD2, 0 8px 12px rgba(0,0,0,0.1);
+      transition: transform 0.15s;
+    }
+
+    .answer-card:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #FFCDD2;
+    }
+
+    .answer-card.match-card {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #2C3E50;
+      padding: 4px;
+    }
+
+    .answer-card.correct {
+      border-color: var(--correct-color) !important;
+      background-color: #E8F5E9 !important;
+      animation: spinCard 0.75s ease-in-out 2 forwards !important;
+    }
+
+    .answer-card.wrong {
+      border-color: var(--wrong-color) !important;
+      background-color: #FFEBEE !important;
+      animation: bounceCard 0.35s ease-in-out 2 !important;
+    }
+
+    @keyframes spinCard {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.08); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+
+    @keyframes bounceCard {
+      0%, 100% { transform: translateY(0); }
+      25% { transform: translateY(-12px); }
+      75% { transform: translateY(6px); }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0); }
+      80% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    #svg-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .label-text {
+      margin-top: 2px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #2C3E50;
+      text-align: center;
+    }
+
+    .baby-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(4px);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .baby-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .baby-box {
+      background: white;
+      padding: 15px 35px;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+      border: 5px solid #4ECDC4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: popIn 0.35s ease-out;
+    }
+
+    .baby-svg {
+      width: 110px;
+      height: 110px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+    }
+
+    .baby-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      margin-top: 8px;
+    }
+
+    .baby-title.happy { color: #2ECC71; }
+    .baby-title.sad { color: #FF4757; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>TOÁN MẦM NON</h1>
+    <div class="tab-container">
+      <button class="tab-button active" onclick="switchMode(1)">1. Phép Tính</button>
+      <button class="tab-button" onclick="switchMode(2)">2. Tập Đếm</button>
+      <button class="tab-button" onclick="switchMode(3)">3. Nối Vật Thể</button>
+    </div>
+  </header>
+
+  <div class="game-area" id="game-area">
+    <svg id="svg-canvas"></svg>
+    <div class="instruction" id="instruction-text">Chọn đáp án đúng để hoàn thành phép tính nhé!</div>
+    <div id="content-container"></div>
+
+    <div class="baby-overlay" id="baby-overlay">
+      <div class="baby-box" id="baby-box"></div>
+    </div>
+  </div>
+
+  <script>
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playTingTing() {
+      initAudio();
+      const now = audioCtx.currentTime;
+      const osc1 = audioCtx.createOscillator();
+      const gain1 = audioCtx.createGain();
+      osc1.type = 'sine';
+      osc1.frequency.setValueAtTime(987.77, now);
+      gain1.gain.setValueAtTime(0.3, now);
+      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+      osc1.connect(gain1);
+      gain1.connect(audioCtx.destination);
+      osc1.start(now);
+      osc1.stop(now + 0.3);
+
+      const osc2 = audioCtx.createOscillator();
+      const gain2 = audioCtx.createGain();
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(1318.51, now + 0.15);
+      gain2.gain.setValueAtTime(0.4, now + 0.15);
+      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+      osc2.connect(gain2);
+      gain2.connect(audioCtx.destination);
+      osc2.start(now + 0.15);
+      osc2.stop(now + 0.6);
+    }
+
+    function playDetDet() {
+      initAudio();
+      const now = audioCtx.currentTime;
+      const osc1 = audioCtx.createOscillator();
+      const gain1 = audioCtx.createGain();
+      osc1.type = 'sawtooth';
+      osc1.frequency.setValueAtTime(150, now);
+      gain1.gain.setValueAtTime(0.3, now);
+      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+      osc1.connect(gain1);
+      gain1.connect(audioCtx.destination);
+      osc1.start(now);
+      osc1.stop(now + 0.2);
+
+      const osc2 = audioCtx.createOscillator();
+      const gain2 = audioCtx.createGain();
+      osc2.type = 'sawtooth';
+      osc2.frequency.setValueAtTime(110, now + 0.15);
+      gain2.gain.setValueAtTime(0.3, now + 0.15);
+      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+      osc2.connect(gain2);
+      gain2.connect(audioCtx.destination);
+      osc2.start(now + 0.15);
+      osc2.stop(now + 0.4);
+    }
+
+    const SVG_ITEMS = {
+      apple: `<svg class="item-svg" viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="appleGrad" cx="35%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#FF7675" />
+            <stop offset="70%" stop-color="#D63031" />
+            <stop offset="100%" stop-color="#880E4F" />
+          </radialGradient>
+          <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#55E6C1" />
+            <stop offset="100%" stop-color="#218C74" />
+          </linearGradient>
+        </defs>
+        <path d="M50,25 Q30,10 22,35 Q12,65 38,90 Q50,95 62,90 Q88,65 78,35 Q70,10 50,25 Z" fill="url(#appleGrad)" />
+        <ellipse cx="38" cy="35" rx="8" ry="14" fill="#FFF" opacity="0.35" transform="rotate(-25 38 35)" />
+        <path d="M50,25 Q52,12 60,8" stroke="#5D4037" stroke-width="4" stroke-linecap="round" fill="none" />
+        <path d="M52,16 Q72,5 68,22 Z" fill="url(#leafGrad)" />
+      </svg>`,
+
+      car: `<svg class="item-svg" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="carBody" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FF7675" />
+            <stop offset="100%" stop-color="#D63031" />
+          </linearGradient>
+          <linearGradient id="carGlass" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#81ECEC" />
+            <stop offset="100%" stop-color="#74B9FF" />
+          </linearGradient>
+        </defs>
+        <rect x="10" y="48" width="80" height="26" rx="8" fill="url(#carBody)" />
+        <path d="M22,48 Q32,22 50,22 Q68,22 78,48 Z" fill="url(#carGlass)" stroke="#FFF" stroke-width="2" />
+        <circle cx="28" cy="74" r="11" fill="#2D3436" />
+        <circle cx="28" cy="74" r="5" fill="#DFE6E9" />
+        <circle cx="72" cy="74" r="11" fill="#2D3436" />
+        <circle cx="72" cy="74" r="5" fill="#DFE6E9" />
+      </svg>`,
+
+      candy: `<svg class="item-svg" viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="candyGrad" cx="35%" cy="35%" r="60%">
+            <stop offset="0%" stop-color="#FD79A8" />
+            <stop offset="100%" stop-color="#E84393" />
+          </radialGradient>
+        </defs>
+        <path d="M12,20 Q22,35 12,50 L38,50 Z" fill="#FD79A8" />
+        <path d="M88,80 Q78,65 88,50 L62,50 Z" fill="#FD79A8" />
+        <circle cx="50" cy="50" r="24" fill="url(#candyGrad)" />
+        <path d="M35,38 Q50,28 65,38 Q50,48 35,38 Z" fill="#FFF" opacity="0.4" />
+      </svg>`,
+
+      ball: `<svg class="item-svg" viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="ballGrad" cx="30%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="#FFEAA7" />
+            <stop offset="50%" stop-color="#FDCB6E" />
+            <stop offset="100%" stop-color="#E17055" />
+          </radialGradient>
+        </defs>
+        <circle cx="50" cy="50" r="38" fill="url(#ballGrad)" />
+        <path d="M12,50 A38,38 0 0,0 88,50 Z" fill="#0984E3" opacity="0.75" />
+        <circle cx="38" cy="32" rx="10" ry="5" fill="#FFF" opacity="0.5" transform="rotate(-20 38 32)" />
+      </svg>`
+    };
+
+    const MATCH_PAIRS = [
+      {
+        target: { name: "Con Thỏ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100">
+          <defs>
+            <radialGradient id="rabbitGrad" cx="40%" cy="40%" r="60%">
+              <stop offset="0%" stop-color="#FFFFFF" />
+              <stop offset="100%" stop-color="#DFE6E9" />
+            </radialGradient>
+          </defs>
+          <ellipse cx="50" cy="62" rx="24" ry="20" fill="url(#rabbitGrad)" />
+          <ellipse cx="38" cy="20" rx="6" ry="18" fill="url(#rabbitGrad)" />
+          <ellipse cx="62" cy="20" rx="6" ry="18" fill="url(#rabbitGrad)" />
+          <ellipse cx="38" cy="20" rx="3" ry="12" fill="#FF8A80" />
+          <ellipse cx="62" cy="20" rx="3" ry="12" fill="#FF8A80" />
+          <circle cx="50" cy="42" r="18" fill="url(#rabbitGrad)" />
+          <circle cx="43" cy="40" r="3" fill="#2D3436" /><circle cx="44" cy="39" r="1" fill="#FFF" />
+          <circle cx="57" cy="40" r="3" fill="#2D3436" /><circle cx="58" cy="39" r="1" fill="#FFF" />
+          <polygon points="48,46 52,46 50,49" fill="#FF7675" />
+        </svg>` },
+        correct: { name: "Củ Cà Rốt", svg: `<svg class="item-svg-large" viewBox="0 0 100 100">
+          <defs>
+            <linearGradient id="carrotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FAB1A0" />
+              <stop offset="50%" stop-color="#E17055" />
+              <stop offset="100%" stop-color="#D63031" />
+            </linearGradient>
+          </defs>
+          <path d="M50,88 L34,32 Q50,26 66,32 Z" fill="url(#carrotGrad)" />
+          <path d="M50,28 L38,10 M50,28 L50,6 M50,28 L62,10" stroke="#00B894" stroke-width="5" stroke-linecap="round" fill="none" />
+          <line x1="40" y1="45" x2="48" y2="47" stroke="#FFF" stroke-width="2" opacity="0.6" />
+        </svg>` },
+        wrong: [
+          { name: "Quả Dưa Hấu", svg: `<svg class="item-svg-large" viewBox="0 0 100 100">
+            <path d="M12,42 A38,38 0 0,0 88,42 Z" fill="#00B894" />
+            <path d="M18,42 A32,32 0 0,0 82,42 Z" fill="#FF7675" />
+            <circle cx="35" cy="52" r="2.5" fill="#2D3436" />
+            <circle cx="50" cy="62" r="2.5" fill="#2D3436" />
+            <circle cx="65" cy="52" r="2.5" fill="#2D3436" />
+          </svg>` },
+          { name: "Cái Lược", svg: `<svg class="item-svg-large" viewBox="0 0 100 100">
+            <rect x="15" y="38" width="70" height="14" rx="4" fill="#E84393" />
+            <rect x="22" y="52" width="4" height="18" fill="#E84393" />
+            <rect x="34" y="52" width="4" height="18" fill="#E84393" />
+            <rect x="46" y="52" width="4" height="18" fill="#E84393" />
+            <rect x="58" y="52" width="4" height="18" fill="#E84393" />
+            <rect x="70" y="52" width="4" height="18" fill="#E84393" />
+          </svg>` },
+          { name: "Bánh Ngọt", svg: `<svg class="item-svg-large" viewBox="0 0 100 100">
+            <rect x="20" y="45" width="60" height="30" rx="6" fill="#FDCB6E" />
+            <path d="M20,45 Q50,30 80,45" fill="#FF7675" />
+            <circle cx="50" cy="32" r="8" fill="#D63031" />
+          </svg>` }
+        ]
+      },
+      {
+        target: { name: "Con Mèo", svg: `<svg class="item-svg-large" viewBox="0 0 100 100">
+          <circle cx="50" cy="52" r="26" fill="#FFEAA7" />
+          <polygon points="28,34 22,12 42,28" fill="#FDCB6E" />
+          <polygon points="72,34 78,12 58,28" fill="#FDCB6E" />
+          <circle cx="40" cy="48" r="3.5" fill="#2D3436" />
+          <circle cx="60" cy="48" r="3.5" fill="#2D3436" />
+          <polygon points="48,54 52,54 50,57" fill="#E84393" />
+        </svg>` },
+        correct: { name: "Con Cá", svg: `<svg class="item-svg-large" viewBox="0 0 100 100">
+          <ellipse cx="44" cy="50" rx="28" ry="18" fill="#74B9FF" />
+          <polygon points="70,50 90,32 90,68" fill="#0984E3" />
+          <circle cx="28" cy="45" r="3.5" fill="#FFF" /><circle cx="28" cy="45" r="1.5" fill="#000" />
+        </svg>` },
+        wrong: [
+          { name: "Củ Cà Rốt", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><polygon points="50,85 35,30 65,30" fill="#E17055"/></svg>` },
+          { name: "Quả Bóng", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="#E84393"/></svg>` },
+          { name: "Cái Cặp", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="22" y="35" width="56" height="40" rx="8" fill="#6C5CE7"/></svg>` }
+        ]
+      }
+    ];
+
+    const BABY_HAPPY_SVG = `<svg class="baby-svg" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="42" fill="#FFEAA7" stroke="#FDCB6E" stroke-width="3" />
+      <!-- Mũ bé -->
+      <path d="M22,36 Q50,10 78,36 Z" fill="#FF7675" />
+      <circle cx="50" cy="16" r="6" fill="#FFF" />
+      <!-- Mắt -->
+      <circle cx="36" cy="46" r="4.5" fill="#2D3436" />
+      <circle cx="64" cy="46" r="4.5" fill="#2D3436" />
+      <circle cx="38" cy="44" r="1.5" fill="#FFF" />
+      <circle cx="66" cy="44" r="1.5" fill="#FFF" />
+      <!-- Má hồng -->
+      <circle cx="28" cy="54" r="6" fill="#FF8A80" opacity="0.6" />
+      <circle cx="72" cy="54" r="6" fill="#FF8A80" opacity="0.6" />
+      <!-- Nụ cười -->
+      <path d="M34,58 Q50,76 66,58 Z" fill="#D63031" />
+      <path d="M40,58 Q50,66 60,58 Z" fill="#FF7675" />
+    </svg>`;
+
+    const BABY_SAD_SVG = `<svg class="baby-svg" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="40" fill="#FFEAA7" stroke="#FDCB6E" stroke-width="3" />
+      <circle cx="36" cy="42" r="4.5" fill="#2D3436" />
+      <circle cx="64" cy="42" r="4.5" fill="#2D3436" />
+      <path d="M34,66 Q50,50 66,66" fill="none" stroke="#2D3436" stroke-width="4.5" stroke-linecap="round" />
+      <path d="M68,46 Q72,56 68,60" fill="none" stroke="#74B9FF" stroke-width="3.5" stroke-linecap="round" />
+    </svg>`;
+
+    let currentMode = 1;
+    let currentCorrectAnswer = null;
+    let isProcessing = false;
+
+    function switchMode(mode) {
+      currentMode = mode;
+      document.querySelectorAll('.tab-button').forEach((btn, idx) => {
+        btn.classList.toggle('active', idx + 1 === mode);
+      });
+      clearCanvas();
+      
+      const instr = document.getElementById('instruction-text');
+      if (mode === 1) instr.innerText = "Chọn đáp án đúng để hoàn thành phép tính nhé!";
+      else if (mode === 2) instr.innerText = "Bé hãy đếm số lượng hình vẽ và chọn con số đúng!";
+      else if (mode === 3) instr.innerText = "Bé hãy chọn hình bên dưới liên quan nhất với hình phía trên!";
+
+      nextQuestion();
+    }
+
+    function clearCanvas() {
+      document.getElementById('svg-canvas').innerHTML = '';
+    }
+
+    function showBabyOverlay(isHappy, callback) {
+      const overlay = document.getElementById('baby-overlay');
+      const box = document.getElementById('baby-box');
+      
+      if (isHappy) {
+        box.innerHTML = `${BABY_HAPPY_SVG}<div class="baby-title happy">BÉ GIỎI QUÁ! ✨</div>`;
+      } else {
+        box.innerHTML = `${BABY_SAD_SVG}<div class="baby-title sad">THỬ LẠI NHÉ! 🥺</div>`;
+      }
+
+      overlay.classList.add('show');
+      setTimeout(() => {
+        overlay.classList.remove('show');
+        if (callback) callback();
+      }, 3000);
+    }
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function shuffleArray(array) {
+      return [...array].sort(() => Math.random() - 0.5);
+    }
+
+    function nextQuestion() {
+      isProcessing = false;
+      clearCanvas();
+      const container = document.getElementById('content-container');
+      container.innerHTML = '';
+
+      if (currentMode === 1) generateMathQuestion(container);
+      else if (currentMode === 2) generateCountQuestion(container);
+      else if (currentMode === 3) generateMatchQuestion(container);
+    }
+
+    function generateMathQuestion(container) {
+      const isAddition = Math.random() > 0.5;
+      let num1, num2, result;
+
+      if (isAddition) {
+        num1 = getRandomInt(1, 8);
+        num2 = getRandomInt(1, 9 - num1);
+        result = num1 + num2;
+      } else {
+        num1 = getRandomInt(2, 9);
+        num2 = getRandomInt(1, num1);
+        result = num1 - num2;
+      }
+
+      const hidePos = getRandomInt(0, 2);
+      let questionText = "";
+
+      if (hidePos === 0) {
+        questionText = `? ${isAddition ? '+' : '-'} ${num2} = ${result}`;
+        currentCorrectAnswer = num1;
+      } else if (hidePos === 1) {
+        questionText = `${num1} ${isAddition ? '+' : '-'} ? = ${result}`;
+        currentCorrectAnswer = num2;
+      } else {
+        questionText = `${num1} ${isAddition ? '+' : '-'} ${num2} = ?`;
+        currentCorrectAnswer = result;
+      }
+
+      const qCard = document.createElement('div');
+      qCard.className = 'flashcard question-card';
+      qCard.innerText = questionText;
+      container.appendChild(qCard);
+
+      let options = [currentCorrectAnswer];
+      while (options.length < 4) {
+        let dummy = getRandomInt(0, 10);
+        if (!options.includes(dummy)) options.push(dummy);
+      }
+      options = shuffleArray(options);
+
+      const grid = document.createElement('div');
+      grid.className = 'answers-grid';
+      options.forEach(opt => {
+        const aCard = document.createElement('div');
+        aCard.className = 'flashcard answer-card';
+        aCard.innerText = opt;
+        aCard.onclick = () => handleAnswer(aCard, opt === currentCorrectAnswer);
+        grid.appendChild(aCard);
+      });
+      container.appendChild(grid);
+    }
+
+    function generateCountQuestion(container) {
+      const count = getRandomInt(1, 8);
+      currentCorrectAnswer = count;
+
+      const keys = Object.keys(SVG_ITEMS);
+      const randomKey = keys[getRandomInt(0, keys.length - 1)];
+      const svgIcon = SVG_ITEMS[randomKey];
+
+      const qCard = document.createElement('div');
+      qCard.className = 'flashcard question-card';
+      
+      const gridObjs = document.createElement('div');
+      gridObjs.className = 'objects-grid';
+      for (let i = 0; i < count; i++) gridObjs.innerHTML += svgIcon;
+      qCard.appendChild(gridObjs);
+      container.appendChild(qCard);
+
+      let options = [currentCorrectAnswer];
+      while (options.length < 4) {
+        let dummy = getRandomInt(1, 9);
+        if (!options.includes(dummy)) options.push(dummy);
+      }
+      options = shuffleArray(options);
+
+      const grid = document.createElement('div');
+      grid.className = 'answers-grid';
+      options.forEach(opt => {
+        const aCard = document.createElement('div');
+        aCard.className = 'flashcard answer-card';
+        aCard.innerText = opt;
+        aCard.onclick = () => handleAnswer(aCard, opt === currentCorrectAnswer);
+        grid.appendChild(aCard);
+      });
+      container.appendChild(grid);
+    }
+
+    function generateMatchQuestion(container) {
+      const pair = MATCH_PAIRS[getRandomInt(0, MATCH_PAIRS.length - 1)];
+
+      const topCard = document.createElement('div');
+      topCard.className = 'flashcard question-card match-mode';
+      topCard.innerHTML = `${pair.target.svg}<div class="label-text">${pair.target.name}</div>`;
+      container.appendChild(topCard);
+
+      let choices = [
+        { ...pair.correct, isCorrect: true },
+        ...pair.wrong.map(item => ({ ...item, isCorrect: false }))
+      ];
+      choices = shuffleArray(choices);
+
+      const grid = document.createElement('div');
+      grid.className = 'answers-grid';
+      choices.forEach((choice) => {
+        const aCard = document.createElement('div');
+        aCard.className = 'flashcard answer-card match-card';
+        aCard.innerHTML = `${choice.svg}<div class="label-text">${choice.name}</div>`;
+        aCard.onclick = () => handleMatchAnswer(aCard, choice.isCorrect, topCard);
+        grid.appendChild(aCard);
+      });
+      container.appendChild(grid);
+    }
+
+    function handleAnswer(cardElement, isCorrect) {
+      if (isProcessing) return;
+      isProcessing = true;
+
+      if (isCorrect) {
+        playTingTing();
+        cardElement.classList.add('correct');
+        showBabyOverlay(true, () => nextQuestion());
+      } else {
+        playDetDet();
+        cardElement.classList.add('wrong');
+        showBabyOverlay(false, () => {
+          cardElement.classList.remove('wrong');
+          isProcessing = false;
+        });
+      }
+    }
+
+    function handleMatchAnswer(cardElement, isCorrect, targetCard) {
+      if (isProcessing) return;
+      isProcessing = true;
+
+      if (isCorrect) {
+        playTingTing();
+        drawLineBetweenCards(targetCard, cardElement);
+        cardElement.classList.add('correct');
+        showBabyOverlay(true, () => nextQuestion());
+      } else {
+        playDetDet();
+        cardElement.classList.add('wrong');
+        showBabyOverlay(false, () => {
+          cardElement.classList.remove('wrong');
+          isProcessing = false;
+        });
+      }
+    }
+
+    function drawLineBetweenCards(card1, card2) {
+      const svg = document.getElementById('svg-canvas');
+      const gameArea = document.getElementById('game-area');
+      const areaRect = gameArea.getBoundingClientRect();
+      const rect1 = card1.getBoundingClientRect();
+      const rect2 = card2.getBoundingClientRect();
+
+      const x1 = rect1.left + rect1.width / 2 - areaRect.left;
+      const y1 = rect1.top + rect1.height / 2 - areaRect.top;
+      const x2 = rect2.left + rect2.width / 2 - areaRect.left;
+      const y2 = rect2.top + rect2.height / 2 - areaRect.top;
+
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', x1);
+      line.setAttribute('y1', y1);
+      line.setAttribute('x2', x2);
+      line.setAttribute('y2', y2);
+      line.setAttribute('stroke', '#2ECC71');
+      line.setAttribute('stroke-width', '6');
+      line.setAttribute('stroke-linecap', 'round');
+      line.setAttribute('stroke-dasharray', '8,8');
+
+      svg.appendChild(line);
+    }
+
+    window.onload = () => switchMode(1);
+  </script>
+</body>
+</html>
