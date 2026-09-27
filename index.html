@@ -119,7 +119,7 @@
       padding: 4px 14px;
       border-radius: 10px;
       border: 2px dashed #FBC02D;
-      height: 26px;
+      height: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -128,7 +128,7 @@
 
     #content-container {
       width: 100%;
-      height: calc(100% - 32px);
+      height: calc(100% - 34px);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -150,8 +150,8 @@
 
     .question-card {
       padding: 4px 16px;
-      width: 55%;
-      max-width: 420px;
+      width: 58%;
+      max-width: 440px;
       height: 38%;
       font-size: 2.5rem;
       font-weight: bold;
@@ -163,30 +163,32 @@
     .question-card.match-mode {
       border-color: #FF9800;
       background: linear-gradient(180deg, #FFF8E1 0%, #FFFFFF 100%);
-      width: 40%;
+      width: 42%;
       height: 42%;
     }
 
     .objects-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 8px;
       justify-content: center;
       align-items: center;
       width: 100%;
       height: 100%;
     }
 
-    .item-svg {
-      width: 45px;
-      height: 45px;
+    .item-img {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
       filter: drop-shadow(2px 3px 4px rgba(0,0,0,0.15));
       animation: popIn 0.3s ease-out;
     }
 
-    .item-svg-large {
-      width: 60px;
-      height: 60px;
+    .item-img-large {
+      width: 65px;
+      height: 65px;
+      object-fit: contain;
       filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.18));
     }
 
@@ -264,7 +266,7 @@
     }
 
     .label-text {
-      margin-top: 2px;
+      margin-top: 3px;
       font-size: 0.85rem;
       font-weight: bold;
       color: #2C3E50;
@@ -296,7 +298,7 @@
 
     .baby-box {
       background: white;
-      padding: 12px 30px;
+      padding: 16px 32px;
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.15);
       border: 4px solid #4ECDC4;
@@ -306,15 +308,16 @@
       animation: popIn 0.35s ease-out;
     }
 
-    .baby-svg {
-      width: 90px;
-      height: 90px;
+    .baby-img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
     }
 
     .baby-title {
       font-weight: bold;
       font-size: 1.3rem;
-      margin-top: 6px;
+      margin-top: 8px;
     }
 
     .baby-title.happy { color: #2ECC71; }
@@ -403,114 +406,91 @@
       osc2.stop(now + 0.4);
     }
 
-    /* BỘ VẬT THỂ ĐA DẠNG CHO CHẾ ĐỘ 2 (TẬP ĐẾM) */
-    const SVG_COUNT_ITEMS = {
-      wheel: `<svg class="item-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#636e72"/><circle cx="50" cy="50" r="28" fill="#b2bec3"/><circle cx="50" cy="50" r="10" fill="#2d3436"/><line x1="50" y1="10" x2="50" y2="90" stroke="#2d3436" stroke-width="4"/><line x1="10" y1="50" x2="90" y2="50" stroke="#2d3436" stroke-width="4"/></svg>`,
-      motorbike: `<svg class="item-svg" viewBox="0 0 100 100"><circle cx="25" cy="68" r="16" fill="#2d3436"/><circle cx="25" cy="68" r="7" fill="#dfe6e9"/><circle cx="75" cy="68" r="16" fill="#2d3436"/><circle cx="75" cy="68" r="7" fill="#dfe6e9"/><path d="M25,68 L45,45 L65,45 L75,68 Z" fill="#d63031"/><rect x="50" y="32" width="20" height="15" rx="3" fill="#0984e3"/><path d="M65,32 L75,18 L82,20" stroke="#2d3436" stroke-width="4" fill="none"/></svg>`,
-      tree: `<svg class="item-svg" viewBox="0 0 100 100"><rect x="42" y="55" width="16" height="35" rx="3" fill="#795548"/><circle cx="50" cy="42" r="28" fill="#2ecc71"/><circle cx="35" cy="35" r="20" fill="#27ae60"/><circle cx="65" cy="35" r="20" fill="#27ae60"/></svg>`,
-      balloon: `<svg class="item-svg" viewBox="0 0 100 100"><path d="M50,15 C25,15 25,55 50,65 C75,55 75,15 50,15 Z" fill="#ff7675"/><polygon points="47,65 53,65 50,70" fill="#d63031"/><path d="M50,70 Q45,80 50,90" stroke="#b2bec3" stroke-width="2" fill="none"/><ellipse cx="40" cy="28" rx="5" ry="10" fill="#fff" opacity="0.4"/></svg>`,
-      phone: `<svg class="item-svg" viewBox="0 0 100 100"><rect x="25" y="12" width="50" height="76" rx="8" fill="#2d3436"/><rect x="29" y="20" width="42" height="60" rx="3" fill="#74b9ff"/><circle cx="50" cy="84" r="3" fill="#dfe6e9"/></svg>`,
-      computer: `<svg class="item-svg" viewBox="0 0 100 100"><rect x="18" y="18" width="64" height="46" rx="4" fill="#0984e3"/><rect x="22" y="22" width="56" height="38" rx="2" fill="#e17055"/><rect x="42" y="64" width="16" height="12" fill="#636e72"/><rect x="15" y="76" width="70" height="8" rx="2" fill="#b2bec3"/></svg>`,
-      cat: `<svg class="item-svg" viewBox="0 0 100 100"><circle cx="50" cy="55" r="28" fill="#fdcb6e"/><polygon points="28,38 22,12 42,30" fill="#e17055"/><polygon points="72,38 78,12 58,30" fill="#e17055"/><circle cx="38" cy="50" r="4" fill="#2d3436"/><circle cx="62" cy="50" r="4" fill="#2d3436"/><polygon points="48,58 52,58 50,62" fill="#e84393"/></svg>`,
-      dog: `<svg class="item-svg" viewBox="0 0 100 100"><circle cx="50" cy="52" r="28" fill="#e17055"/><ellipse cx="24" cy="48" rx="8" ry="18" fill="#795548"/><ellipse cx="76" cy="48" rx="8" ry="18" fill="#795548"/><circle cx="38" cy="46" r="4" fill="#2d3436"/><circle cx="62" cy="46" r="4" fill="#2d3436"/><ellipse cx="50" cy="58" rx="7" ry="5" fill="#2d3436"/></svg>`,
-      duck: `<svg class="item-svg" viewBox="0 0 100 100"><path d="M20,60 Q20,80 50,80 Q80,80 75,60 Q65,50 50,55 Z" fill="#ffeaa7"/><circle cx="65" cy="38" r="16" fill="#ffeaa7"/><ellipse cx="78" cy="40" rx="10" ry="5" fill="#e17055"/><circle cx="68" cy="34" r="3" fill="#2d3436"/></svg>`,
-      book: `<svg class="item-svg" viewBox="0 0 100 100"><rect x="18" y="22" width="64" height="56" rx="4" fill="#6c5ce7"/><path d="M50,22 L50,78" stroke="#fff" stroke-width="3"/><line x1="26" y1="35" x2="42" y2="35" stroke="#fff" stroke-width="3"/><line x1="26" y1="48" x2="42" y2="48" stroke="#fff" stroke-width="3"/><line x1="58" y1="35" x2="74" y2="35" stroke="#fff" stroke-width="3"/></svg>`,
-      pen: `<svg class="item-svg" viewBox="0 0 100 100"><path d="M25,75 L68,32 L78,42 L35,85 Z" fill="#00b894"/><polygon points="25,75 18,88 35,85" fill="#fdcb6e"/><polygon points="18,88 15,91 21,85" fill="#2d3436"/></svg>`,
-      apple: `<svg class="item-svg" viewBox="0 0 100 100"><path d="M50,25 Q30,10 22,35 Q12,65 38,90 Q50,95 62,90 Q88,65 78,35 Q70,10 50,25 Z" fill="#ff7675"/><ellipse cx="38" cy="35" rx="8" ry="14" fill="#FFF" opacity="0.35" transform="rotate(-25 38 35)"/></svg>`
-    };
+    /* BỘ HÌNH ẢNH HOẠT HÌNH TRỰC TUYẾN CHO CHẾ ĐỘ 2 (TẬP ĐẾM) */
+    const IMG_COUNT_ITEMS = [
+      `<img class="item-img" src="https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png" alt="Con Xúc Xắc">`,
+      `<img class="item-img" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Dog_icon.png" alt="Con Chó">`,
+      `<img class="item-img" src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Duck_icon.png" alt="Con Vịt">`,
+      `<img class="item-img" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Red_apple.png" alt="Quả Táo">`,
+      `<img class="item-img" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Carrot-icon.png" alt="Củ Cà Rốt">`,
+      `<img class="item-img" src="https://upload.wikimedia.org/wikipedia/commons/d/db/A_red_car.png" alt="Xe Ô Tô">`,
+      `<img class="item-img" src="https://upload.wikimedia.org/wikipedia/commons/8/86/A_blue_star.png" alt="Ngôi Sao">`,
+      `<img class="item-img" src="https://upload.wikimedia.org/wikipedia/commons/3/30/Book_icon.png" alt="Cuốn Sách">`,
+      `<img class="item-img" src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Fish_icon.png" alt="Con Cá">`,
+      `<img class="item-img" src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Tree_icon.png" alt="Cây Xanh">`,
+      `<img class="item-img" src="https://upload.wikimedia.org/wikipedia/commons/8/87/Soccer_ball.png" alt="Quả Bóng">`,
+      `<img class="item-img" src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Cat_icon.png" alt="Con Mèo">`
+    ];
 
-    /* CHẾ ĐỘ 3: DANH SÁCH CON VẬT & MÓN ĂN/VẬT DỤNG */
+    /* CHẾ ĐỘ 3: BỘ HÌNH ẢNH HOẠT HÌNH NỐI CẶP */
     const MATCH_PAIRS = [
       {
-        target: { name: "Con Chó", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="50" cy="52" r="28" fill="#e17055"/><ellipse cx="24" cy="48" rx="8" ry="18" fill="#795548"/><ellipse cx="76" cy="48" rx="8" ry="18" fill="#795548"/><circle cx="38" cy="46" r="4" fill="#2d3436"/><circle cx="62" cy="46" r="4" fill="#2d3436"/><ellipse cx="50" cy="58" rx="7" ry="5" fill="#2d3436"/></svg>` },
-        correct: { name: "Cục Xương", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="28" y="44" width="44" height="12" rx="4" fill="#dfe6e9"/><circle cx="26" cy="42" r="8" fill="#dfe6e9"/><circle cx="26" cy="58" r="8" fill="#dfe6e9"/><circle cx="74" cy="42" r="8" fill="#dfe6e9"/><circle cx="74" cy="58" r="8" fill="#dfe6e9"/></svg>` },
+        target: { name: "Con Chó", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Dog_icon.png" alt="Con Chó">` },
+        correct: { name: "Cục Xương", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Bone_icon.png" alt="Cục Xương">` },
         wrong: [
-          { name: "Bó Cỏ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M30,80 Q20,30 15,20 M50,80 Q50,20 50,10 M70,80 Q80,30 85,20" stroke="#2ecc71" stroke-width="8" stroke-linecap="round" fill="none"/></svg>` },
-          { name: "Cá Sâu", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="30" ry="15" fill="#00b894"/></svg>` },
-          { name: "Quả Táo", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="50" cy="50" r="25" fill="#ff7675"/></svg>` }
+          { name: "Bó Cỏ", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/8/84/Grass_icon.png" alt="Bó Cỏ">` },
+          { name: "Con Cá", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Fish_icon.png" alt="Con Cá">` },
+          { name: "Quả Táo", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Red_apple.png" alt="Quả Táo">` }
         ]
       },
       {
-        target: { name: "Con Trâu", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="50" cy="55" r="26" fill="#636e72"/><path d="M25,45 Q10,15 35,32 M75,45 Q90,15 65,32" stroke="#2d3436" stroke-width="6" fill="none"/><circle cx="38" cy="52" r="3" fill="#fff"/><circle cx="62" cy="52" r="3" fill="#fff"/></svg>` },
-        correct: { name: "Bó Cỏ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M30,80 Q20,30 15,20 M50,80 Q50,20 50,10 M70,80 Q80,30 85,20" stroke="#2ecc71" stroke-width="8" stroke-linecap="round" fill="none"/></svg>` },
+        target: { name: "Con Trâu / Bò", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Cow_icon.png" alt="Con Trâu">` },
+        correct: { name: "Bó Cỏ", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/8/84/Grass_icon.png" alt="Bó Cỏ">` },
         wrong: [
-          { name: "Cục Xương", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="28" y="44" width="44" height="12" rx="4" fill="#dfe6e9"/></svg>` },
-          { name: "Con Cá", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="25" ry="15" fill="#74b9ff"/></svg>` },
-          { name: "Thịt Bò", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="25" y="35" width="50" height="30" rx="6" fill="#d63031"/></svg>` }
+          { name: "Cục Xương", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Bone_icon.png" alt="Cục Xương">` },
+          { name: "Con Cá", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Fish_icon.png" alt="Con Cá">` },
+          { name: "Củ Cà Rốt", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Carrot-icon.png" alt="Củ Cà Rốt">` }
         ]
       },
       {
-        target: { name: "Con Gà", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="50" cy="58" r="22" fill="#ffeaa7"/><path d="M50,18 Q55,28 65,38 L35,38 Z" fill="#d63031"/><polygon points="65,48 80,52 65,56" fill="#e17055"/><circle cx="58" cy="42" r="3" fill="#2d3436"/></svg>` },
-        correct: { name: "Hạt Thóc", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><ellipse cx="35" cy="50" rx="10" ry="5" fill="#fca510" transform="rotate(-30 35 50)"/><ellipse cx="50" cy="60" rx="10" ry="5" fill="#fca510" transform="rotate(15 50 60)"/><ellipse cx="65" cy="45" rx="10" ry="5" fill="#fca510" transform="rotate(-45 65 45)"/></svg>` },
+        target: { name: "Con Gà", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/2/23/Chicken_icon.png" alt="Con Gà">` },
+        correct: { name: "Hạt Thóc / Ngô", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Corn_icon.png" alt="Hạt Thóc">` },
         wrong: [
-          { name: "Thịt Bò", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="25" y="35" width="50" height="30" rx="6" fill="#d63031"/></svg>` },
-          { name: "Củ Cà Rốt", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><polygon points="50,85 35,30 65,30" fill="#e17055"/></svg>` },
-          { name: "Bó Cỏ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M40,80 L40,20 M60,80 L60,20" stroke="#2ecc71" stroke-width="6"/></svg>` }
+          { name: "Thịt Bò", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Meat_icon.png" alt="Thịt Bò">` },
+          { name: "Củ Cà Rốt", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Carrot-icon.png" alt="Củ Cà Rốt">` },
+          { name: "Bó Cỏ", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/8/84/Grass_icon.png" alt="Bó Cỏ">` }
         ]
       },
       {
-        target: { name: "Con Chim", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M20,50 Q50,20 80,50 Q50,80 20,50 Z" fill="#74b9ff"/><polygon points="70,48 88,50 70,55" fill="#fdcb6e"/><circle cx="60" cy="42" r="3" fill="#2d3436"/></svg>` },
-        correct: { name: "Con Sâu", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="25" cy="50" r="8" fill="#55efc4"/><circle cx="38" cy="54" r="8" fill="#00b894"/><circle cx="51" cy="50" r="8" fill="#55efc4"/><circle cx="64" cy="54" r="8" fill="#00b894"/><circle cx="77" cy="50" r="9" fill="#55efc4"/><circle cx="80" cy="47" r="2" fill="#2d3436"/></svg>` },
+        target: { name: "Con Chim", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Bird_icon.png" alt="Con Chim">` },
+        correct: { name: "Con Sâu", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/3/33/Caterpillar_icon.png" alt="Con Sâu">` },
         wrong: [
-          { name: "Cục Xương", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="28" y="44" width="44" height="12" rx="4" fill="#dfe6e9"/></svg>` },
-          { name: "Cái Cặp", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="25" y="35" width="50" height="35" rx="6" fill="#6c5ce7"/></svg>` },
-          { name: "Củ Cà Rốt", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><polygon points="50,85 35,30 65,30" fill="#e17055"/></svg>` }
+          { name: "Cục Xương", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Bone_icon.png" alt="Cục Xương">` },
+          { name: "Quả Táo", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Red_apple.png" alt="Quả Táo">` },
+          { name: "Củ Cà Rốt", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Carrot-icon.png" alt="Củ Cà Rốt">` }
         ]
       },
       {
-        target: { name: "Con Hổ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="50" cy="52" r="28" fill="#e17055"/><path d="M40,28 L50,40 L60,28" stroke="#2d3436" stroke-width="4" fill="none"/><circle cx="38" cy="48" r="4" fill="#2d3436"/><circle cx="62" cy="48" r="4" fill="#2d3436"/><polygon points="46,58 54,58 50,62" fill="#2d3436"/></svg>` },
-        correct: { name: "Thịt Bò", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="20" y="35" width="60" height="32" rx="8" fill="#d63031"/><ellipse cx="38" cy="51" rx="10" ry="6" fill="#ff7675"/><ellipse cx="60" cy="51" rx="8" ry="5" fill="#ff7675"/></svg>` },
+        target: { name: "Con Hổ", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/1/10/Tiger_icon.png" alt="Con Hổ">` },
+        correct: { name: "Thịt Bò", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Meat_icon.png" alt="Thịt Bò">` },
         wrong: [
-          { name: "Bó Cỏ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M40,80 L40,20 M60,80 L60,20" stroke="#2ecc71" stroke-width="6"/></svg>` },
-          { name: "Hạt Thóc", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="8" ry="4" fill="#fca510"/></svg>` },
-          { name: "Quả Dưa Hấu", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M20,50 A30,30 0 0,0 80,50 Z" fill="#00b894"/></svg>` }
+          { name: "Bó Cỏ", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/8/84/Grass_icon.png" alt="Bó Cỏ">` },
+          { name: "Củ Cà Rốt", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Carrot-icon.png" alt="Củ Cà Rốt">` },
+          { name: "Hạt Ngô", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Corn_icon.png" alt="Hạt Ngô">` }
         ]
       },
       {
-        target: { name: "Cá Sấu", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M15,55 L75,35 L85,55 L35,65 Z" fill="#00b894"/><polygon points="35,45 42,38 48,46 55,39 62,48" fill="#fff"/><circle cx="30" cy="42" r="3" fill="#2d3436"/></svg>` },
-        correct: { name: "Thịt Bò", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="20" y="35" width="60" height="32" rx="8" fill="#d63031"/><ellipse cx="38" cy="51" rx="10" ry="6" fill="#ff7675"/><ellipse cx="60" cy="51" rx="8" ry="5" fill="#ff7675"/></svg>` },
+        target: { name: "Con Thỏ", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Rabbit_icon.png" alt="Con Thỏ">` },
+        correct: { name: "Củ Cà Rốt", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Carrot-icon.png" alt="Củ Cà Rốt">` },
         wrong: [
-          { name: "Hạt Thóc", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="8" ry="4" fill="#fca510"/></svg>` },
-          { name: "Bó Cỏ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M40,80 L40,20 M60,80 L60,20" stroke="#2ecc71" stroke-width="6"/></svg>` },
-          { name: "Củ Cà Rốt", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><polygon points="50,85 35,30 65,30" fill="#e17055"/></svg>` }
+          { name: "Thịt Bò", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Meat_icon.png" alt="Thịt Bò">` },
+          { name: "Con Sâu", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/3/33/Caterpillar_icon.png" alt="Con Sâu">` },
+          { name: "Cục Xương", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Bone_icon.png" alt="Cục Xương">` }
         ]
       },
       {
-        target: { name: "Con Thỏ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><ellipse cx="50" cy="62" rx="22" ry="18" fill="#dfe6e9"/><ellipse cx="40" cy="22" rx="5" ry="16" fill="#dfe6e9"/><ellipse cx="60" cy="22" rx="5" ry="16" fill="#dfe6e9"/><circle cx="50" cy="42" r="16" fill="#dfe6e9"/><circle cx="44" cy="40" r="3" fill="#2d3436"/><circle cx="56" cy="40" r="3" fill="#2d3436"/></svg>` },
-        correct: { name: "Củ Cà Rốt", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M50,88 L34,32 Q50,26 66,32 Z" fill="#e17055"/><path d="M50,28 L38,10 M50,28 L50,6 M50,28 L62,10" stroke="#00b894" stroke-width="4" fill="none"/></svg>` },
+        target: { name: "Con Mèo", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Cat_icon.png" alt="Con Mèo">` },
+        correct: { name: "Con Cá", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Fish_icon.png" alt="Con Cá">` },
         wrong: [
-          { name: "Thịt Bò", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="25" y="35" width="50" height="30" rx="6" fill="#d63031"/></svg>` },
-          { name: "Con Sâu", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="50" cy="50" r="10" fill="#00b894"/></svg>` },
-          { name: "Cục Xương", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="28" y="44" width="44" height="12" rx="4" fill="#dfe6e9"/></svg>` }
-        ]
-      },
-      {
-        target: { name: "Con Mèo", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="50" cy="52" r="26" fill="#ffeaa7"/><polygon points="28,34 22,12 42,28" fill="#fdcb6e"/><polygon points="72,34 78,12 58,28" fill="#fdcb6e"/><circle cx="40" cy="48" r="3.5" fill="#2d3436"/><circle cx="60" cy="48" r="3.5" fill="#2d3436"/></svg>` },
-        correct: { name: "Con Cá", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><ellipse cx="44" cy="50" rx="26" ry="16" fill="#74b9ff"/><polygon points="68,50 88,34 88,66" fill="#0984e3"/><circle cx="28" cy="45" r="3" fill="#fff"/></svg>` },
-        wrong: [
-          { name: "Củ Cà Rốt", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><polygon points="50,85 35,30 65,30" fill="#e17055"/></svg>` },
-          { name: "Bó Cỏ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M40,80 L40,20 M60,80 L60,20" stroke="#2ecc71" stroke-width="6"/></svg>` },
-          { name: "Hạt Thóc", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="8" ry="4" fill="#fca510"/></svg>` }
+          { name: "Củ Cà Rốt", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Carrot-icon.png" alt="Củ Cà Rốt">` },
+          { name: "Bó Cỏ", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/8/84/Grass_icon.png" alt="Bó Cỏ">` },
+          { name: "Hạt Ngô", img: `<img class="item-img-large" src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Corn_icon.png" alt="Hạt Ngô">` }
         ]
       }
     ];
 
-    const BABY_HAPPY_SVG = `<svg class="baby-svg" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="40" fill="#FFEAA7" stroke="#FDCB6E" stroke-width="3" />
-      <circle cx="36" cy="40" r="4.5" fill="#2D3436" />
-      <circle cx="64" cy="40" r="4.5" fill="#2D3436" />
-      <path d="M32,54 Q50,78 68,54" fill="none" stroke="#2D3436" stroke-width="4.5" stroke-linecap="round" />
-      <circle cx="26" cy="50" r="6" fill="#FF7675" opacity="0.6" />
-      <circle cx="74" cy="50" r="6" fill="#FF7675" opacity="0.6" />
-    </svg>`;
-
-    const BABY_SAD_SVG = `<svg class="baby-svg" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="40" fill="#FFEAA7" stroke="#FDCB6E" stroke-width="3" />
-      <circle cx="36" cy="42" r="4.5" fill="#2D3436" />
-      <circle cx="64" cy="42" r="4.5" fill="#2D3436" />
-      <path d="M34,66 Q50,50 66,66" fill="none" stroke="#2D3436" stroke-width="4.5" stroke-linecap="round" />
-      <path d="M68,46 Q72,56 68,60" fill="none" stroke="#74B9FF" stroke-width="3.5" stroke-linecap="round" />
-    </svg>`;
+    const BABY_HAPPY_IMG = `<img class="baby-img" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Happy_Baby_Icon.png" alt="Bé Cười">`;
+    const BABY_SAD_IMG = `<img class="baby-img" src="https://upload.wikimedia.org/wikipedia/commons/d/d2/Sad_Baby_Icon.png" alt="Bé Buồn">`;
 
     let currentMode = 1;
     let currentCorrectAnswer = null;
@@ -540,16 +520,16 @@
       const box = document.getElementById('baby-box');
       
       if (isHappy) {
-        box.innerHTML = `${BABY_HAPPY_SVG}<div class="baby-title happy">BÉ GIỎI QUÁ! ✨</div>`;
+        box.innerHTML = `${BABY_HAPPY_IMG}<div class="baby-title happy">BÉ GIỎI QUÁ! ✨</div>`;
       } else {
-        box.innerHTML = `${BABY_SAD_SVG}<div class="baby-title sad">THỬ LẠI NHÉ! 🥺</div>`;
+        box.innerHTML = `${BABY_SAD_IMG}<div class="baby-title sad">THỬ LẠI NHÉ! 🥺</div>`;
       }
 
       overlay.classList.add('show');
       setTimeout(() => {
         overlay.classList.remove('show');
         if (callback) callback();
-      }, 2500);
+      }, 2300);
     }
 
     function getRandomInt(min, max) {
@@ -627,16 +607,14 @@
       const count = getRandomInt(1, 8);
       currentCorrectAnswer = count;
 
-      const keys = Object.keys(SVG_COUNT_ITEMS);
-      const randomKey = keys[getRandomInt(0, keys.length - 1)];
-      const svgIcon = SVG_COUNT_ITEMS[randomKey];
+      const randomImgTag = IMG_COUNT_ITEMS[getRandomInt(0, IMG_COUNT_ITEMS.length - 1)];
 
       const qCard = document.createElement('div');
       qCard.className = 'flashcard question-card';
       
       const gridObjs = document.createElement('div');
       gridObjs.className = 'objects-grid';
-      for (let i = 0; i < count; i++) gridObjs.innerHTML += svgIcon;
+      for (let i = 0; i < count; i++) gridObjs.innerHTML += randomImgTag;
       qCard.appendChild(gridObjs);
       container.appendChild(qCard);
 
@@ -664,7 +642,7 @@
 
       const topCard = document.createElement('div');
       topCard.className = 'flashcard question-card match-mode';
-      topCard.innerHTML = `${pair.target.svg}<div class="label-text">${pair.target.name}</div>`;
+      topCard.innerHTML = `${pair.target.img}<div class="label-text">${pair.target.name}</div>`;
       container.appendChild(topCard);
 
       let choices = [
@@ -678,7 +656,7 @@
       choices.forEach((choice) => {
         const aCard = document.createElement('div');
         aCard.className = 'flashcard answer-card match-card';
-        aCard.innerHTML = `${choice.svg}<div class="label-text">${choice.name}</div>`;
+        aCard.innerHTML = `${choice.img}<div class="label-text">${choice.name}</div>`;
         aCard.onclick = () => handleMatchAnswer(aCard, choice.isCorrect, topCard);
         grid.appendChild(aCard);
       });
