@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Toán Mầm Non - Học Mà Chơi</title>
   <style>
     :root {
@@ -12,7 +12,6 @@
       --text-color: #2D3748;
       --correct-color: #2ECC71;
       --wrong-color: #FF4757;
-      --font-main: Arial, sans-serif;
     }
 
     * {
@@ -21,15 +20,13 @@
       padding: 0;
       user-select: none;
       -webkit-user-select: none;
-      -webkit-tap-highlight-color: transparent;
     }
 
     html, body {
       width: 100%;
       height: 100%;
-      height: 100dvh; /* Dynamic viewport height for modern browsers */
       overflow: hidden;
-      font-family: var(--font-main);
+      font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #E0F7FA 0%, #FFF9C4 100%);
     }
 
@@ -38,7 +35,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 8px;
+      padding: 8px 12px;
       position: relative;
     }
 
@@ -50,14 +47,13 @@
       justify-content: space-between;
       height: 48px;
       flex-shrink: 0;
-      gap: 8px;
     }
 
     h1 {
-      font-family: var(--font-main);
+      font-family: Arial, sans-serif;
       font-weight: bold;
       color: #FF4757;
-      font-size: clamp(1rem, 4vw, 1.4rem);
+      font-size: 1.3rem;
       text-shadow: 1px 1px 0px #FFF, 2px 2px 0px rgba(0,0,0,0.1);
       white-space: nowrap;
     }
@@ -68,10 +64,10 @@
     }
 
     .tab-button {
-      font-family: var(--font-main);
+      font-family: Arial, sans-serif;
       font-weight: bold;
-      font-size: clamp(0.7rem, 2.5vw, 0.85rem);
-      padding: 6px 10px;
+      font-size: 0.85rem;
+      padding: 6px 12px;
       border: 2px solid #FFF;
       border-radius: 18px;
       background: var(--secondary-color);
@@ -101,12 +97,12 @@
     .game-area {
       width: 100%;
       max-width: 960px;
-      height: calc(100dvh - 60px);
-      background: rgba(255, 255, 255, 0.92);
-      border-radius: 20px;
-      padding: 10px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      border: 3px solid #FFF;
+      height: calc(100vh - 60px);
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 16px;
+      padding: 8px 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      border: 2px solid #FFF;
       position: relative;
       display: flex;
       flex-direction: column;
@@ -115,38 +111,35 @@
     }
 
     .instruction {
-      font-size: clamp(0.8rem, 2.8vw, 0.95rem);
+      font-size: 0.9rem;
       font-weight: bold;
       color: #2C3E50;
       text-align: center;
       background: #FFF9C4;
-      padding: 4px 12px;
-      border-radius: 12px;
+      padding: 4px 14px;
+      border-radius: 10px;
       border: 2px dashed #FBC02D;
-      min-height: 28px;
+      height: 26px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      width: 100%;
-      word-break: break-word;
     }
 
     #content-container {
       width: 100%;
-      height: calc(100% - 36px);
+      height: calc(100% - 32px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-evenly;
-      gap: 8px;
     }
 
     .flashcard {
       background: #FFFFFF;
-      border-radius: 18px;
-      border: 4px solid #E0E0E0;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+      border-radius: 16px;
+      border: 3px solid #E0E0E0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.06);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -156,11 +149,11 @@
     }
 
     .question-card {
-      padding: 6px 12px;
-      width: 80%;
-      max-width: 480px;
+      padding: 4px 16px;
+      width: 55%;
+      max-width: 420px;
       height: 38%;
-      font-size: clamp(2rem, 8vw, 2.8rem);
+      font-size: 2.5rem;
       font-weight: bold;
       color: #2C3E50;
       border-color: #4A90E2;
@@ -170,9 +163,8 @@
     .question-card.match-mode {
       border-color: #FF9800;
       background: linear-gradient(180deg, #FFF8E1 0%, #FFFFFF 100%);
-      width: 60%;
-      max-width: 320px;
-      height: 44%;
+      width: 40%;
+      height: 42%;
     }
 
     .objects-grid {
@@ -183,50 +175,39 @@
       align-items: center;
       width: 100%;
       height: 100%;
-      overflow: hidden;
     }
 
     .item-svg {
-      width: clamp(36px, 10vw, 50px);
-      height: clamp(36px, 10vw, 50px);
-      filter: drop-shadow(2px 4px 5px rgba(0,0,0,0.18));
+      width: 45px;
+      height: 45px;
+      filter: drop-shadow(2px 3px 4px rgba(0,0,0,0.15));
       animation: popIn 0.3s ease-out;
     }
 
     .item-svg-large {
-      width: clamp(48px, 14vw, 70px);
-      height: clamp(48px, 14vw, 70px);
-      filter: drop-shadow(3px 5px 8px rgba(0,0,0,0.2));
+      width: 60px;
+      height: 60px;
+      filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.18));
     }
 
     .answers-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 10px;
-      width: 95%;
-      max-width: 820px;
+      width: 90%;
+      max-width: 780px;
       height: 48%;
-    }
-
-    /* Adjust to 4 columns on landscape or larger mobile screens */
-    @media (min-width: 480px) or (orientation: landscape) {
-      .answers-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-      .question-card {
-        width: 60%;
-      }
     }
 
     .answer-card {
       height: 100%;
       cursor: pointer;
-      font-size: clamp(1.8rem, 6vw, 2.2rem);
+      font-size: 2rem;
       font-weight: bold;
       color: #2C3E50;
       border-color: #FF8A80;
       background: #FFF;
-      box-shadow: 0 4px 0 #FFCDD2, 0 6px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 0 #FFCDD2, 0 6px 10px rgba(0,0,0,0.08);
       transition: transform 0.15s;
     }
 
@@ -236,8 +217,7 @@
     }
 
     .answer-card.match-card {
-      font-family: var(--font-main);
-      font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+      font-size: 0.85rem;
       font-weight: bold;
       color: #2C3E50;
       padding: 4px;
@@ -257,19 +237,19 @@
 
     @keyframes spinCard {
       0% { transform: rotate(0deg) scale(1); }
-      50% { transform: rotate(180deg) scale(1.08); }
+      50% { transform: rotate(180deg) scale(1.05); }
       100% { transform: rotate(360deg) scale(1); }
     }
 
     @keyframes bounceCard {
       0%, 100% { transform: translateY(0); }
-      25% { transform: translateY(-10px); }
-      75% { transform: translateY(5px); }
+      25% { transform: translateY(-8px); }
+      75% { transform: translateY(4px); }
     }
 
     @keyframes popIn {
       0% { transform: scale(0); }
-      80% { transform: scale(1.15); }
+      80% { transform: scale(1.1); }
       100% { transform: scale(1); }
     }
 
@@ -285,7 +265,7 @@
 
     .label-text {
       margin-top: 2px;
-      font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+      font-size: 0.85rem;
       font-weight: bold;
       color: #2C3E50;
       text-align: center;
@@ -298,8 +278,8 @@
       width: 100%;
       height: 100%;
       background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(4px);
-      border-radius: 20px;
+      backdrop-filter: blur(3px);
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -316,29 +296,25 @@
 
     .baby-box {
       background: white;
-      padding: 15px 25px;
-      border-radius: 24px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.18);
-      border: 5px solid #4ECDC4;
+      padding: 12px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border: 4px solid #4ECDC4;
       display: flex;
       flex-direction: column;
       align-items: center;
       animation: popIn 0.35s ease-out;
-      max-width: 90%;
     }
 
     .baby-svg {
-      width: clamp(80px, 20vw, 110px);
-      height: clamp(80px, 20vw, 110px);
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+      width: 90px;
+      height: 90px;
     }
 
     .baby-title {
-      font-family: var(--font-main);
       font-weight: bold;
-      font-size: clamp(1.1rem, 4vw, 1.5rem);
-      margin-top: 8px;
-      text-align: center;
+      font-size: 1.3rem;
+      margin-top: 6px;
     }
 
     .baby-title.happy { color: #2ECC71; }
@@ -427,159 +403,105 @@
       osc2.stop(now + 0.4);
     }
 
-    const SVG_ITEMS = {
-      apple: `<svg class="item-svg" viewBox="0 0 100 100">
-        <defs>
-          <radialGradient id="appleGrad" cx="35%" cy="35%" r="65%">
-            <stop offset="0%" stop-color="#FF7675" />
-            <stop offset="70%" stop-color="#D63031" />
-            <stop offset="100%" stop-color="#880E4F" />
-          </radialGradient>
-          <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#55E6C1" />
-            <stop offset="100%" stop-color="#218C74" />
-          </linearGradient>
-        </defs>
-        <path d="M50,25 Q30,10 22,35 Q12,65 38,90 Q50,95 62,90 Q88,65 78,35 Q70,10 50,25 Z" fill="url(#appleGrad)" />
-        <ellipse cx="38" cy="35" rx="8" ry="14" fill="#FFF" opacity="0.35" transform="rotate(-25 38 35)" />
-        <path d="M50,25 Q52,12 60,8" stroke="#5D4037" stroke-width="4" stroke-linecap="round" fill="none" />
-        <path d="M52,16 Q72,5 68,22 Z" fill="url(#leafGrad)" />
-      </svg>`,
-
-      car: `<svg class="item-svg" viewBox="0 0 100 100">
-        <defs>
-          <linearGradient id="carBody" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#FF7675" />
-            <stop offset="100%" stop-color="#D63031" />
-          </linearGradient>
-          <linearGradient id="carGlass" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#81ECEC" />
-            <stop offset="100%" stop-color="#74B9FF" />
-          </linearGradient>
-        </defs>
-        <rect x="10" y="48" width="80" height="26" rx="8" fill="url(#carBody)" />
-        <path d="M22,48 Q32,22 50,22 Q68,22 78,48 Z" fill="url(#carGlass)" stroke="#FFF" stroke-width="2" />
-        <circle cx="28" cy="74" r="11" fill="#2D3436" />
-        <circle cx="28" cy="74" r="5" fill="#DFE6E9" />
-        <circle cx="72" cy="74" r="11" fill="#2D3436" />
-        <circle cx="72" cy="74" r="5" fill="#DFE6E9" />
-      </svg>`,
-
-      candy: `<svg class="item-svg" viewBox="0 0 100 100">
-        <defs>
-          <radialGradient id="candyGrad" cx="35%" cy="35%" r="60%">
-            <stop offset="0%" stop-color="#FD79A8" />
-            <stop offset="100%" stop-color="#E84393" />
-          </radialGradient>
-        </defs>
-        <path d="M12,20 Q22,35 12,50 L38,50 Z" fill="#FD79A8" />
-        <path d="M88,80 Q78,65 88,50 L62,50 Z" fill="#FD79A8" />
-        <circle cx="50" cy="50" r="24" fill="url(#candyGrad)" />
-        <path d="M35,38 Q50,28 65,38 Q50,48 35,38 Z" fill="#FFF" opacity="0.4" />
-      </svg>`,
-
-      ball: `<svg class="item-svg" viewBox="0 0 100 100">
-        <defs>
-          <radialGradient id="ballGrad" cx="30%" cy="30%" r="70%">
-            <stop offset="0%" stop-color="#FFEAA7" />
-            <stop offset="50%" stop-color="#FDCB6E" />
-            <stop offset="100%" stop-color="#E17055" />
-          </radialGradient>
-        </defs>
-        <circle cx="50" cy="50" r="38" fill="url(#ballGrad)" />
-        <path d="M12,50 A38,38 0 0,0 88,50 Z" fill="#0984E3" opacity="0.75" />
-        <circle cx="38" cy="32" rx="10" ry="5" fill="#FFF" opacity="0.5" transform="rotate(-20 38 32)" />
-      </svg>`
+    /* BỘ VẬT THỂ ĐA DẠNG CHO CHẾ ĐỘ 2 (TẬP ĐẾM) */
+    const SVG_COUNT_ITEMS = {
+      wheel: `<svg class="item-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#636e72"/><circle cx="50" cy="50" r="28" fill="#b2bec3"/><circle cx="50" cy="50" r="10" fill="#2d3436"/><line x1="50" y1="10" x2="50" y2="90" stroke="#2d3436" stroke-width="4"/><line x1="10" y1="50" x2="90" y2="50" stroke="#2d3436" stroke-width="4"/></svg>`,
+      motorbike: `<svg class="item-svg" viewBox="0 0 100 100"><circle cx="25" cy="68" r="16" fill="#2d3436"/><circle cx="25" cy="68" r="7" fill="#dfe6e9"/><circle cx="75" cy="68" r="16" fill="#2d3436"/><circle cx="75" cy="68" r="7" fill="#dfe6e9"/><path d="M25,68 L45,45 L65,45 L75,68 Z" fill="#d63031"/><rect x="50" y="32" width="20" height="15" rx="3" fill="#0984e3"/><path d="M65,32 L75,18 L82,20" stroke="#2d3436" stroke-width="4" fill="none"/></svg>`,
+      tree: `<svg class="item-svg" viewBox="0 0 100 100"><rect x="42" y="55" width="16" height="35" rx="3" fill="#795548"/><circle cx="50" cy="42" r="28" fill="#2ecc71"/><circle cx="35" cy="35" r="20" fill="#27ae60"/><circle cx="65" cy="35" r="20" fill="#27ae60"/></svg>`,
+      balloon: `<svg class="item-svg" viewBox="0 0 100 100"><path d="M50,15 C25,15 25,55 50,65 C75,55 75,15 50,15 Z" fill="#ff7675"/><polygon points="47,65 53,65 50,70" fill="#d63031"/><path d="M50,70 Q45,80 50,90" stroke="#b2bec3" stroke-width="2" fill="none"/><ellipse cx="40" cy="28" rx="5" ry="10" fill="#fff" opacity="0.4"/></svg>`,
+      phone: `<svg class="item-svg" viewBox="0 0 100 100"><rect x="25" y="12" width="50" height="76" rx="8" fill="#2d3436"/><rect x="29" y="20" width="42" height="60" rx="3" fill="#74b9ff"/><circle cx="50" cy="84" r="3" fill="#dfe6e9"/></svg>`,
+      computer: `<svg class="item-svg" viewBox="0 0 100 100"><rect x="18" y="18" width="64" height="46" rx="4" fill="#0984e3"/><rect x="22" y="22" width="56" height="38" rx="2" fill="#e17055"/><rect x="42" y="64" width="16" height="12" fill="#636e72"/><rect x="15" y="76" width="70" height="8" rx="2" fill="#b2bec3"/></svg>`,
+      cat: `<svg class="item-svg" viewBox="0 0 100 100"><circle cx="50" cy="55" r="28" fill="#fdcb6e"/><polygon points="28,38 22,12 42,30" fill="#e17055"/><polygon points="72,38 78,12 58,30" fill="#e17055"/><circle cx="38" cy="50" r="4" fill="#2d3436"/><circle cx="62" cy="50" r="4" fill="#2d3436"/><polygon points="48,58 52,58 50,62" fill="#e84393"/></svg>`,
+      dog: `<svg class="item-svg" viewBox="0 0 100 100"><circle cx="50" cy="52" r="28" fill="#e17055"/><ellipse cx="24" cy="48" rx="8" ry="18" fill="#795548"/><ellipse cx="76" cy="48" rx="8" ry="18" fill="#795548"/><circle cx="38" cy="46" r="4" fill="#2d3436"/><circle cx="62" cy="46" r="4" fill="#2d3436"/><ellipse cx="50" cy="58" rx="7" ry="5" fill="#2d3436"/></svg>`,
+      duck: `<svg class="item-svg" viewBox="0 0 100 100"><path d="M20,60 Q20,80 50,80 Q80,80 75,60 Q65,50 50,55 Z" fill="#ffeaa7"/><circle cx="65" cy="38" r="16" fill="#ffeaa7"/><ellipse cx="78" cy="40" rx="10" ry="5" fill="#e17055"/><circle cx="68" cy="34" r="3" fill="#2d3436"/></svg>`,
+      book: `<svg class="item-svg" viewBox="0 0 100 100"><rect x="18" y="22" width="64" height="56" rx="4" fill="#6c5ce7"/><path d="M50,22 L50,78" stroke="#fff" stroke-width="3"/><line x1="26" y1="35" x2="42" y2="35" stroke="#fff" stroke-width="3"/><line x1="26" y1="48" x2="42" y2="48" stroke="#fff" stroke-width="3"/><line x1="58" y1="35" x2="74" y2="35" stroke="#fff" stroke-width="3"/></svg>`,
+      pen: `<svg class="item-svg" viewBox="0 0 100 100"><path d="M25,75 L68,32 L78,42 L35,85 Z" fill="#00b894"/><polygon points="25,75 18,88 35,85" fill="#fdcb6e"/><polygon points="18,88 15,91 21,85" fill="#2d3436"/></svg>`,
+      apple: `<svg class="item-svg" viewBox="0 0 100 100"><path d="M50,25 Q30,10 22,35 Q12,65 38,90 Q50,95 62,90 Q88,65 78,35 Q70,10 50,25 Z" fill="#ff7675"/><ellipse cx="38" cy="35" rx="8" ry="14" fill="#FFF" opacity="0.35" transform="rotate(-25 38 35)"/></svg>`
     };
 
+    /* CHẾ ĐỘ 3: DANH SÁCH CON VẬT & MÓN ĂN/VẬT DỤNG */
     const MATCH_PAIRS = [
       {
-        target: { name: "Con Thỏ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100">
-          <defs>
-            <radialGradient id="rabbitGrad" cx="40%" cy="40%" r="60%">
-              <stop offset="0%" stop-color="#FFFFFF" />
-              <stop offset="100%" stop-color="#DFE6E9" />
-            </radialGradient>
-          </defs>
-          <ellipse cx="50" cy="62" rx="24" ry="20" fill="url(#rabbitGrad)" />
-          <ellipse cx="38" cy="20" rx="6" ry="18" fill="url(#rabbitGrad)" />
-          <ellipse cx="62" cy="20" rx="6" ry="18" fill="url(#rabbitGrad)" />
-          <ellipse cx="38" cy="20" rx="3" ry="12" fill="#FF8A80" />
-          <ellipse cx="62" cy="20" rx="3" ry="12" fill="#FF8A80" />
-          <circle cx="50" cy="42" r="18" fill="url(#rabbitGrad)" />
-          <circle cx="43" cy="40" r="3" fill="#2D3436" /><circle cx="44" cy="39" r="1" fill="#FFF" />
-          <circle cx="57" cy="40" r="3" fill="#2D3436" /><circle cx="58" cy="39" r="1" fill="#FFF" />
-          <polygon points="48,46 52,46 50,49" fill="#FF7675" />
-        </svg>` },
-        correct: { name: "Củ Cà Rốt", svg: `<svg class="item-svg-large" viewBox="0 0 100 100">
-          <defs>
-            <linearGradient id="carrotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#FAB1A0" />
-              <stop offset="50%" stop-color="#E17055" />
-              <stop offset="100%" stop-color="#D63031" />
-            </linearGradient>
-          </defs>
-          <path d="M50,88 L34,32 Q50,26 66,32 Z" fill="url(#carrotGrad)" />
-          <path d="M50,28 L38,10 M50,28 L50,6 M50,28 L62,10" stroke="#00B894" stroke-width="5" stroke-linecap="round" fill="none" />
-          <line x1="40" y1="45" x2="48" y2="47" stroke="#FFF" stroke-width="2" opacity="0.6" />
-        </svg>` },
+        target: { name: "Con Chó", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="50" cy="52" r="28" fill="#e17055"/><ellipse cx="24" cy="48" rx="8" ry="18" fill="#795548"/><ellipse cx="76" cy="48" rx="8" ry="18" fill="#795548"/><circle cx="38" cy="46" r="4" fill="#2d3436"/><circle cx="62" cy="46" r="4" fill="#2d3436"/><ellipse cx="50" cy="58" rx="7" ry="5" fill="#2d3436"/></svg>` },
+        correct: { name: "Cục Xương", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="28" y="44" width="44" height="12" rx="4" fill="#dfe6e9"/><circle cx="26" cy="42" r="8" fill="#dfe6e9"/><circle cx="26" cy="58" r="8" fill="#dfe6e9"/><circle cx="74" cy="42" r="8" fill="#dfe6e9"/><circle cx="74" cy="58" r="8" fill="#dfe6e9"/></svg>` },
         wrong: [
-          { name: "Quả Dưa Hấu", svg: `<svg class="item-svg-large" viewBox="0 0 100 100">
-            <path d="M12,42 A38,38 0 0,0 88,42 Z" fill="#00B894" />
-            <path d="M18,42 A32,32 0 0,0 82,42 Z" fill="#FF7675" />
-            <circle cx="35" cy="52" r="2.5" fill="#2D3436" />
-            <circle cx="50" cy="62" r="2.5" fill="#2D3436" />
-            <circle cx="65" cy="52" r="2.5" fill="#2D3436" />
-          </svg>` },
-          { name: "Cái Lược", svg: `<svg class="item-svg-large" viewBox="0 0 100 100">
-            <rect x="15" y="38" width="70" height="14" rx="4" fill="#E84393" />
-            <rect x="22" y="52" width="4" height="18" fill="#E84393" />
-            <rect x="34" y="52" width="4" height="18" fill="#E84393" />
-            <rect x="46" y="52" width="4" height="18" fill="#E84393" />
-            <rect x="58" y="52" width="4" height="18" fill="#E84393" />
-            <rect x="70" y="52" width="4" height="18" fill="#E84393" />
-          </svg>` },
-          { name: "Bánh Ngọt", svg: `<svg class="item-svg-large" viewBox="0 0 100 100">
-            <rect x="20" y="45" width="60" height="30" rx="6" fill="#FDCB6E" />
-            <path d="M20,45 Q50,30 80,45" fill="#FF7675" />
-            <circle cx="50" cy="32" r="8" fill="#D63031" />
-          </svg>` }
+          { name: "Bó Cỏ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M30,80 Q20,30 15,20 M50,80 Q50,20 50,10 M70,80 Q80,30 85,20" stroke="#2ecc71" stroke-width="8" stroke-linecap="round" fill="none"/></svg>` },
+          { name: "Cá Sâu", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="30" ry="15" fill="#00b894"/></svg>` },
+          { name: "Quả Táo", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="50" cy="50" r="25" fill="#ff7675"/></svg>` }
         ]
       },
       {
-        target: { name: "Con Mèo", svg: `<svg class="item-svg-large" viewBox="0 0 100 100">
-          <circle cx="50" cy="52" r="26" fill="#FFEAA7" />
-          <polygon points="28,34 22,12 42,28" fill="#FDCB6E" />
-          <polygon points="72,34 78,12 58,28" fill="#FDCB6E" />
-          <circle cx="40" cy="48" r="3.5" fill="#2D3436" />
-          <circle cx="60" cy="48" r="3.5" fill="#2D3436" />
-          <polygon points="48,54 52,54 50,57" fill="#E84393" />
-        </svg>` },
-        correct: { name: "Con Cá", svg: `<svg class="item-svg-large" viewBox="0 0 100 100">
-          <ellipse cx="44" cy="50" rx="28" ry="18" fill="#74B9FF" />
-          <polygon points="70,50 90,32 90,68" fill="#0984E3" />
-          <circle cx="28" cy="45" r="3.5" fill="#FFF" /><circle cx="28" cy="45" r="1.5" fill="#000" />
-        </svg>` },
+        target: { name: "Con Trâu", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="50" cy="55" r="26" fill="#636e72"/><path d="M25,45 Q10,15 35,32 M75,45 Q90,15 65,32" stroke="#2d3436" stroke-width="6" fill="none"/><circle cx="38" cy="52" r="3" fill="#fff"/><circle cx="62" cy="52" r="3" fill="#fff"/></svg>` },
+        correct: { name: "Bó Cỏ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M30,80 Q20,30 15,20 M50,80 Q50,20 50,10 M70,80 Q80,30 85,20" stroke="#2ecc71" stroke-width="8" stroke-linecap="round" fill="none"/></svg>` },
         wrong: [
-          { name: "Củ Cà Rốt", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><polygon points="50,85 35,30 65,30" fill="#E17055"/></svg>` },
-          { name: "Quả Bóng", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="#E84393"/></svg>` },
-          { name: "Cái Cặp", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="22" y="35" width="56" height="40" rx="8" fill="#6C5CE7"/></svg>` }
+          { name: "Cục Xương", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="28" y="44" width="44" height="12" rx="4" fill="#dfe6e9"/></svg>` },
+          { name: "Con Cá", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="25" ry="15" fill="#74b9ff"/></svg>` },
+          { name: "Thịt Bò", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="25" y="35" width="50" height="30" rx="6" fill="#d63031"/></svg>` }
+        ]
+      },
+      {
+        target: { name: "Con Gà", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="50" cy="58" r="22" fill="#ffeaa7"/><path d="M50,18 Q55,28 65,38 L35,38 Z" fill="#d63031"/><polygon points="65,48 80,52 65,56" fill="#e17055"/><circle cx="58" cy="42" r="3" fill="#2d3436"/></svg>` },
+        correct: { name: "Hạt Thóc", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><ellipse cx="35" cy="50" rx="10" ry="5" fill="#fca510" transform="rotate(-30 35 50)"/><ellipse cx="50" cy="60" rx="10" ry="5" fill="#fca510" transform="rotate(15 50 60)"/><ellipse cx="65" cy="45" rx="10" ry="5" fill="#fca510" transform="rotate(-45 65 45)"/></svg>` },
+        wrong: [
+          { name: "Thịt Bò", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="25" y="35" width="50" height="30" rx="6" fill="#d63031"/></svg>` },
+          { name: "Củ Cà Rốt", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><polygon points="50,85 35,30 65,30" fill="#e17055"/></svg>` },
+          { name: "Bó Cỏ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M40,80 L40,20 M60,80 L60,20" stroke="#2ecc71" stroke-width="6"/></svg>` }
+        ]
+      },
+      {
+        target: { name: "Con Chim", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M20,50 Q50,20 80,50 Q50,80 20,50 Z" fill="#74b9ff"/><polygon points="70,48 88,50 70,55" fill="#fdcb6e"/><circle cx="60" cy="42" r="3" fill="#2d3436"/></svg>` },
+        correct: { name: "Con Sâu", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="25" cy="50" r="8" fill="#55efc4"/><circle cx="38" cy="54" r="8" fill="#00b894"/><circle cx="51" cy="50" r="8" fill="#55efc4"/><circle cx="64" cy="54" r="8" fill="#00b894"/><circle cx="77" cy="50" r="9" fill="#55efc4"/><circle cx="80" cy="47" r="2" fill="#2d3436"/></svg>` },
+        wrong: [
+          { name: "Cục Xương", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="28" y="44" width="44" height="12" rx="4" fill="#dfe6e9"/></svg>` },
+          { name: "Cái Cặp", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="25" y="35" width="50" height="35" rx="6" fill="#6c5ce7"/></svg>` },
+          { name: "Củ Cà Rốt", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><polygon points="50,85 35,30 65,30" fill="#e17055"/></svg>` }
+        ]
+      },
+      {
+        target: { name: "Con Hổ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="50" cy="52" r="28" fill="#e17055"/><path d="M40,28 L50,40 L60,28" stroke="#2d3436" stroke-width="4" fill="none"/><circle cx="38" cy="48" r="4" fill="#2d3436"/><circle cx="62" cy="48" r="4" fill="#2d3436"/><polygon points="46,58 54,58 50,62" fill="#2d3436"/></svg>` },
+        correct: { name: "Thịt Bò", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="20" y="35" width="60" height="32" rx="8" fill="#d63031"/><ellipse cx="38" cy="51" rx="10" ry="6" fill="#ff7675"/><ellipse cx="60" cy="51" rx="8" ry="5" fill="#ff7675"/></svg>` },
+        wrong: [
+          { name: "Bó Cỏ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M40,80 L40,20 M60,80 L60,20" stroke="#2ecc71" stroke-width="6"/></svg>` },
+          { name: "Hạt Thóc", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="8" ry="4" fill="#fca510"/></svg>` },
+          { name: "Quả Dưa Hấu", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M20,50 A30,30 0 0,0 80,50 Z" fill="#00b894"/></svg>` }
+        ]
+      },
+      {
+        target: { name: "Cá Sấu", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M15,55 L75,35 L85,55 L35,65 Z" fill="#00b894"/><polygon points="35,45 42,38 48,46 55,39 62,48" fill="#fff"/><circle cx="30" cy="42" r="3" fill="#2d3436"/></svg>` },
+        correct: { name: "Thịt Bò", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="20" y="35" width="60" height="32" rx="8" fill="#d63031"/><ellipse cx="38" cy="51" rx="10" ry="6" fill="#ff7675"/><ellipse cx="60" cy="51" rx="8" ry="5" fill="#ff7675"/></svg>` },
+        wrong: [
+          { name: "Hạt Thóc", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="8" ry="4" fill="#fca510"/></svg>` },
+          { name: "Bó Cỏ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M40,80 L40,20 M60,80 L60,20" stroke="#2ecc71" stroke-width="6"/></svg>` },
+          { name: "Củ Cà Rốt", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><polygon points="50,85 35,30 65,30" fill="#e17055"/></svg>` }
+        ]
+      },
+      {
+        target: { name: "Con Thỏ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><ellipse cx="50" cy="62" rx="22" ry="18" fill="#dfe6e9"/><ellipse cx="40" cy="22" rx="5" ry="16" fill="#dfe6e9"/><ellipse cx="60" cy="22" rx="5" ry="16" fill="#dfe6e9"/><circle cx="50" cy="42" r="16" fill="#dfe6e9"/><circle cx="44" cy="40" r="3" fill="#2d3436"/><circle cx="56" cy="40" r="3" fill="#2d3436"/></svg>` },
+        correct: { name: "Củ Cà Rốt", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M50,88 L34,32 Q50,26 66,32 Z" fill="#e17055"/><path d="M50,28 L38,10 M50,28 L50,6 M50,28 L62,10" stroke="#00b894" stroke-width="4" fill="none"/></svg>` },
+        wrong: [
+          { name: "Thịt Bò", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="25" y="35" width="50" height="30" rx="6" fill="#d63031"/></svg>` },
+          { name: "Con Sâu", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="50" cy="50" r="10" fill="#00b894"/></svg>` },
+          { name: "Cục Xương", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><rect x="28" y="44" width="44" height="12" rx="4" fill="#dfe6e9"/></svg>` }
+        ]
+      },
+      {
+        target: { name: "Con Mèo", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><circle cx="50" cy="52" r="26" fill="#ffeaa7"/><polygon points="28,34 22,12 42,28" fill="#fdcb6e"/><polygon points="72,34 78,12 58,28" fill="#fdcb6e"/><circle cx="40" cy="48" r="3.5" fill="#2d3436"/><circle cx="60" cy="48" r="3.5" fill="#2d3436"/></svg>` },
+        correct: { name: "Con Cá", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><ellipse cx="44" cy="50" rx="26" ry="16" fill="#74b9ff"/><polygon points="68,50 88,34 88,66" fill="#0984e3"/><circle cx="28" cy="45" r="3" fill="#fff"/></svg>` },
+        wrong: [
+          { name: "Củ Cà Rốt", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><polygon points="50,85 35,30 65,30" fill="#e17055"/></svg>` },
+          { name: "Bó Cỏ", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><path d="M40,80 L40,20 M60,80 L60,20" stroke="#2ecc71" stroke-width="6"/></svg>` },
+          { name: "Hạt Thóc", svg: `<svg class="item-svg-large" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="8" ry="4" fill="#fca510"/></svg>` }
         ]
       }
     ];
 
     const BABY_HAPPY_SVG = `<svg class="baby-svg" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="42" fill="#FFEAA7" stroke="#FDCB6E" stroke-width="3" />
-      <path d="M22,36 Q50,10 78,36 Z" fill="#FF7675" />
-      <circle cx="50" cy="16" r="6" fill="#FFF" />
-      <circle cx="36" cy="46" r="4.5" fill="#2D3436" />
-      <circle cx="64" cy="46" r="4.5" fill="#2D3436" />
-      <circle cx="38" cy="44" r="1.5" fill="#FFF" />
-      <circle cx="66" cy="44" r="1.5" fill="#FFF" />
-      <circle cx="28" cy="54" r="6" fill="#FF8A80" opacity="0.6" />
-      <circle cx="72" cy="54" r="6" fill="#FF8A80" opacity="0.6" />
-      <path d="M34,58 Q50,76 66,58 Z" fill="#D63031" />
-      <path d="M40,58 Q50,66 60,58 Z" fill="#FF7675" />
+      <circle cx="50" cy="50" r="40" fill="#FFEAA7" stroke="#FDCB6E" stroke-width="3" />
+      <circle cx="36" cy="40" r="4.5" fill="#2D3436" />
+      <circle cx="64" cy="40" r="4.5" fill="#2D3436" />
+      <path d="M32,54 Q50,78 68,54" fill="none" stroke="#2D3436" stroke-width="4.5" stroke-linecap="round" />
+      <circle cx="26" cy="50" r="6" fill="#FF7675" opacity="0.6" />
+      <circle cx="74" cy="50" r="6" fill="#FF7675" opacity="0.6" />
     </svg>`;
 
     const BABY_SAD_SVG = `<svg class="baby-svg" viewBox="0 0 100 100">
@@ -705,9 +627,9 @@
       const count = getRandomInt(1, 8);
       currentCorrectAnswer = count;
 
-      const keys = Object.keys(SVG_ITEMS);
+      const keys = Object.keys(SVG_COUNT_ITEMS);
       const randomKey = keys[getRandomInt(0, keys.length - 1)];
-      const svgIcon = SVG_ITEMS[randomKey];
+      const svgIcon = SVG_COUNT_ITEMS[randomKey];
 
       const qCard = document.createElement('div');
       qCard.className = 'flashcard question-card';
@@ -818,17 +740,12 @@
       line.setAttribute('x2', x2);
       line.setAttribute('y2', y2);
       line.setAttribute('stroke', '#2ECC71');
-      line.setAttribute('stroke-width', '6');
+      line.setAttribute('stroke-width', '5');
       line.setAttribute('stroke-linecap', 'round');
-      line.setAttribute('stroke-dasharray', '8,8');
+      line.setAttribute('stroke-dasharray', '6,6');
 
       svg.appendChild(line);
     }
-
-    // Redraw SVG line if window resizes
-    window.onresize = () => {
-      clearCanvas();
-    };
 
     window.onload = () => switchMode(1);
   </script>
