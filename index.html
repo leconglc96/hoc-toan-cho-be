@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Toán Mầm Non - Học Mà Chơi</title>
+  <title>Toán Mầm Non & Tiếng Anh Cho Bé</title>
   <style>
     :root {
       --primary-color: #FF5252;
@@ -12,6 +12,7 @@
       --text-color: #2D3748;
       --correct-color: #2ECC71;
       --wrong-color: #FF4757;
+      --purple-color: #9B59B6;
     }
 
     * {
@@ -53,21 +54,21 @@
       font-family: Arial, sans-serif;
       font-weight: bold;
       color: #FF4757;
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       text-shadow: 1px 1px 0px #FFF, 2px 2px 0px rgba(0,0,0,0.1);
       white-space: nowrap;
     }
 
     .tab-container {
       display: flex;
-      gap: 6px;
+      gap: 4px;
     }
 
     .tab-button {
       font-family: Arial, sans-serif;
       font-weight: bold;
-      font-size: 0.85rem;
-      padding: 6px 12px;
+      font-size: 0.78rem;
+      padding: 6px 9px;
       border: 2px solid #FFF;
       border-radius: 18px;
       background: var(--secondary-color);
@@ -86,6 +87,11 @@
     .tab-button:nth-child(3) {
       background: #2ECC71;
       box-shadow: 0 3px 0 #27AE60, 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .tab-button:nth-child(4) {
+      background: var(--purple-color);
+      box-shadow: 0 3px 0 #712688, 0 4px 6px rgba(0,0,0,0.1);
     }
 
     .tab-button.active {
@@ -111,7 +117,7 @@
     }
 
     .instruction {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: bold;
       color: #2C3E50;
       text-align: center;
@@ -236,6 +242,163 @@
       animation: bounceCard 0.35s ease-in-out 2 !important;
     }
 
+    /* CSS CHO CHẾ ĐỘ 4: TIẾNG ANH */
+    .eng-wrapper {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 0;
+    }
+
+    .eng-subtabs {
+      display: flex;
+      gap: 8px;
+    }
+
+    .eng-subtab-btn {
+      padding: 5px 14px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      border: 2px solid #8E44AD;
+      border-radius: 12px;
+      background: #F3E5F5;
+      color: #712688;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .eng-subtab-btn.active {
+      background: #8E44AD;
+      color: white;
+    }
+
+    .eng-card {
+      width: 280px;
+      height: 270px;
+      background: #FFFFFF;
+      border-radius: 20px;
+      border: 4px solid #8E44AD;
+      box-shadow: 0 8px 18px rgba(142, 68, 173, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 16px;
+    }
+
+    .speaker-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 44px;
+      height: 44px;
+      background: #F3E5F5;
+      border: 2px solid #8E44AD;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+      transition: transform 0.1s, background-color 0.15s;
+    }
+
+    .speaker-btn:hover {
+      background: #E1BEE7;
+    }
+
+    .speaker-btn:active {
+      transform: scale(0.92);
+    }
+
+    .eng-card-number {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #2C3E50;
+      line-height: 1;
+    }
+
+    .eng-card-letter {
+      font-size: 4.2rem;
+      font-weight: bold;
+      color: #2980B9;
+      line-height: 1;
+    }
+
+    .eng-card-img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      margin-bottom: 6px;
+    }
+
+    .eng-color-box {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid #333;
+      margin-bottom: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .eng-word {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #8E44AD;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    .eng-ipa {
+      font-size: 1.15rem;
+      color: #555;
+      font-style: italic;
+      margin-top: 2px;
+      font-family: Arial, sans-serif;
+    }
+
+    .eng-vi {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #27AE60;
+      margin-top: 4px;
+    }
+
+    .eng-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .eng-nav-btn {
+      padding: 8px 18px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      background: #8E44AD;
+      color: white;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #6C3483;
+    }
+
+    .eng-nav-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #6C3483;
+    }
+
+    .eng-counter {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #2C3E50;
+      min-width: 70px;
+      text-align: center;
+    }
+
     @keyframes spinCard {
       0% { transform: rotate(0deg) scale(1); }
       50% { transform: rotate(180deg) scale(1.05); }
@@ -326,11 +489,12 @@
 <body>
 
   <header>
-    <h1>TOÁN MẦM NON</h1>
+    <h1>TOÁN MẦM NON & TIẾNG ANH</h1>
     <div class="tab-container">
       <button class="tab-button active" onclick="switchMode(1)">1. Phép Tính</button>
       <button class="tab-button" onclick="switchMode(2)">2. Tập Đếm</button>
       <button class="tab-button" onclick="switchMode(3)">3. Nối Vật Thể</button>
+      <button class="tab-button" onclick="switchMode(4)">4. Tiếng Anh</button>
     </div>
   </header>
 
@@ -488,12 +652,126 @@
       }
     ];
 
+    /* DỮ LIỆU TIẾNG ANH (CHẾ ĐỘ 4) */
+    function getEnglishNumbers() {
+      const units = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
+      const unitsIPA = ["/ˈzɪərəʊ/", "/wʌn/", "/tuː/", "/θriː/", "/fɔːr/", "/faɪv/", "/sɪks/", "/ˈsevn/", "/eɪt/", "/naɪn/"];
+      const teens = ["Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+      const teensIPA = ["/ten/", "/ɪˈlevn/", "/twelv/", "/ˌθɜːˈtiːn/", "/ˌfɔːˈtiːn/", "/ˌfɪfˈtiːn/", "/ˌsɪksˈtiːn/", "/ˌsevnˈtiːn/", "/ˌeɪˈtiːn/", "/ˌnaɪnˈtiːn/"];
+      const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+      const tensIPA = ["", "", "/ˈtwenti/", "/ˈθɜːti/", "/ˈfɔːti/", "/ˈfɪfti/", "/ˈsɪksti/", "/ˈsevnti/", "/ˈeɪti/", "/ˈnaɪnti/"];
+
+      const list = [];
+      for (let i = 0; i <= 100; i++) {
+        if (i < 10) {
+          list.push({ num: i, word: units[i], ipa: unitsIPA[i] });
+        } else if (i < 20) {
+          list.push({ num: i, word: teens[i - 10], ipa: teensIPA[i - 10] });
+        } else if (i < 100) {
+          const t = Math.floor(i / 10);
+          const u = i % 10;
+          if (u === 0) {
+            list.push({ num: i, word: tens[t], ipa: tensIPA[t] });
+          } else {
+            list.push({
+              num: i,
+              word: `${tens[t]}-${units[u].toLowerCase()}`,
+              ipa: `${tensIPA[t]} ${unitsIPA[u]}`
+            });
+          }
+        } else {
+          list.push({ num: 100, word: "One hundred", ipa: "/wʌn ˈhʌndrəd/" });
+        }
+      }
+      return list;
+    }
+
+    const ALPHABET_DATA = [
+      { letter: "A a", word: "A", ipa: "/eɪ/" },
+      { letter: "B b", word: "B", ipa: "/biː/" },
+      { letter: "C c", word: "C", ipa: "/siː/" },
+      { letter: "D d", word: "D", ipa: "/diː/" },
+      { letter: "E e", word: "E", ipa: "/iː/" },
+      { letter: "F f", word: "F", ipa: "/ef/" },
+      { letter: "G g", word: "G", ipa: "/dʒiː/" },
+      { letter: "H h", word: "H", ipa: "/eɪtʃ/" },
+      { letter: "I i", word: "I", ipa: "/aɪ/" },
+      { letter: "J j", word: "J", ipa: "/dʒeɪ/" },
+      { letter: "K k", word: "K", ipa: "/keɪ/" },
+      { letter: "L l", word: "L", ipa: "/el/" },
+      { letter: "M m", word: "M", ipa: "/em/" },
+      { letter: "N n", word: "N", ipa: "/en/" },
+      { letter: "O o", word: "O", ipa: "/əʊ/" },
+      { letter: "P p", word: "P", ipa: "/piː/" },
+      { letter: "Q q", word: "Q", ipa: "/kjuː/" },
+      { letter: "R r", word: "R", ipa: "/ɑːr/" },
+      { letter: "S s", word: "S", ipa: "/es/" },
+      { letter: "T t", word: "T", ipa: "/tiː/" },
+      { letter: "U u", word: "U", ipa: "/juː/" },
+      { letter: "V v", word: "V", ipa: "/viː/" },
+      { letter: "W w", word: "W", ipa: "/ˈdʌbl.juː/" },
+      { letter: "X x", word: "X", ipa: "/eks/" },
+      { letter: "Y y", word: "Y", ipa: "/waɪ/" },
+      { letter: "Z z", word: "Z", ipa: "/zed/" }
+    ];
+
+    const VOCAB_DATA = [
+      { vi: "Cái bàn", eng: "Table", ipa: "/ˈteɪbl/", img: "https://cdn-icons-png.flaticon.com/512/2258/2258432.png" },
+      { vi: "Cái ghế", eng: "Chair", ipa: "/tʃeər/", img: "https://cdn-icons-png.flaticon.com/512/2258/2258428.png" },
+      { vi: "Cây bút", eng: "Pen", ipa: "/pen/", img: "https://cdn-icons-png.flaticon.com/512/1250/1250615.png" },
+      { vi: "Xe đạp", eng: "Bicycle", ipa: "/ˈbaɪsɪkl/", img: "https://cdn-icons-png.flaticon.com/512/2972/2972185.png" },
+      { vi: "Xe máy", eng: "Motorbike", ipa: "/ˈməʊtəbaɪk/", img: "https://cdn-icons-png.flaticon.com/512/3198/3198344.png" },
+      { vi: "Xe ô tô", eng: "Car", ipa: "/kɑːr/", img: "https://img.magnific.com/vector-cao-cap/xe-o-to-mau-do-hoat-hinh-trong-de-thuong_601658-2609.jpg" },
+      { vi: "Ngôi nhà", eng: "House", ipa: "/haʊs/", img: "https://cdn-icons-png.flaticon.com/512/619/619153.png" },
+      { vi: "Cuốn sách", eng: "Book", ipa: "/bʊk/", img: "https://thuvienvector.vn/wp-content/uploads/2025/12/sach-vector.jpg" },
+      { vi: "Con chó", eng: "Dog", ipa: "/dɒɡ/", img: "https://e7.pngegg.com/pngimages/854/696/png-clipart-dog-puppy-dog-mammal-animals.png" },
+      { vi: "Con mèo", eng: "Cat", ipa: "/kæt/", img: "https://png.pngtree.com/png-clipart/20241003/original/pngtree-a-cartoon-cat-png-image_16176361.png" },
+      { vi: "Con hổ", eng: "Tiger", ipa: "/ˈtaɪɡər/", img: "https://png.pngtree.com/png-vector/20260106/ourlarge/pngtree-tiger-pictures-png-image_18351699.webp" },
+      { vi: "Con gà", eng: "Chicken", ipa: "/ˈtʃɪkɪn/", img: "https://png.pngtree.com/png-vector/20240506/ourlarge/pngtree-the-rooster-gave-a-like-png-image_12370323.png" },
+      { vi: "Con vịt", eng: "Duck", ipa: "/dʌk/", img: "https://e7.pngegg.com/pngimages/83/294/png-clipart-duck-cartoon-duck-animals-chicken.png" },
+      { vi: "Con chim", eng: "Bird", ipa: "/bɜːd/", img: "https://cdn.s99.vn/ss1/prod/product/41325b45e0df2fd741e47f1e24a27fc8.jpg" },
+      { vi: "Con cá", eng: "Fish", ipa: "/fɪʃ/", img: "https://png.pngtree.com/png-vector/20241207/ourlarge/pngtree-funny-fish-png-image_14689894.png" },
+      { vi: "Cái cây", eng: "Tree", ipa: "/triː/", img: "https://png.pngtree.com/png-vector/20240907/ourmid/pngtree-cartoon-green-tree-clipart-illustration-free-png-image_13783074.png" },
+      { vi: "Xanh dương", eng: "Blue", ipa: "/bluː/", colorHex: "#3498DB" },
+      { vi: "Xanh lá", eng: "Green", ipa: "/ɡriːn/", colorHex: "#2ECC71" },
+      { vi: "Màu đỏ", eng: "Red", ipa: "/red/", colorHex: "#E74C3C" },
+      { vi: "Màu vàng", eng: "Yellow", ipa: "/ˈjeləʊ/", colorHex: "#F1C40F" },
+      { vi: "Màu đen", eng: "Black", ipa: "/blæk/", colorHex: "#2C3E50" },
+      { vi: "Màu nâu", eng: "Brown", ipa: "/braʊn/", colorHex: "#795548" },
+      { vi: "Màu trắng", eng: "White", ipa: "/waɪt/", colorHex: "#FFFFFF" },
+      { vi: "Màu hồng", eng: "Pink", ipa: "/pɪŋk/", colorHex: "#FF69B4" },
+      { vi: "Màu tím", eng: "Purple", ipa: "/ˈpɜːpl/", colorHex: "#9B59B6" },
+      { vi: "Màu xám", eng: "Grey", ipa: "/ɡreɪ/", colorHex: "#95A5A6" },
+      { vi: "Máy tính", eng: "Computer", ipa: "/kəmˈpjuːtər/", img: "https://cdn-icons-png.flaticon.com/512/3062/3062331.png" },
+      { vi: "Tivi", eng: "Television", ipa: "/ˈtelɪvɪʒn/", img: "https://cdn-icons-png.flaticon.com/512/3075/3075916.png" },
+      { vi: "Tiền", eng: "Money", ipa: "/ˈmʌni/", img: "https://cdn-icons-png.flaticon.com/512/2489/2489756.png" },
+      { vi: "Con đường", eng: "Road", ipa: "/rəʊd/", img: "https://cdn-icons-png.flaticon.com/512/2972/2972230.png" }
+    ];
+
     const BABY_HAPPY_IMG = `<img class="baby-img" src="./cuoi.png" alt="Bé Cười" style="width: 100px; height: 100px">`;
     const BABY_SAD_IMG = `<img class="baby-img" src="./khoc.png" alt="Bé Buồn" style="width: 100px; height: 100px">`;
 
     let currentMode = 1;
     let currentCorrectAnswer = null;
     let isProcessing = false;
+
+    // Biến điều khiển chế độ Tiếng Anh
+    let englishSubTab = 1; // 1: Số, 2: Chữ, 3: Từ vựng
+    let engCurrentIndex = 0;
+    const numberCardsList = getEnglishNumbers();
+
+    function speakEnglish(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85;
+        utterance.pitch = 1.05;
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert("Trình duyệt của bạn chưa hỗ trợ tính năng phát âm thanh.");
+      }
+    }
 
     function switchMode(mode) {
       currentMode = mode;
@@ -506,8 +784,114 @@
       if (mode === 1) instr.innerText = "Chọn đáp án đúng để hoàn thành phép tính nhé!";
       else if (mode === 2) instr.innerText = "Bé hãy đếm số lượng hình vẽ và chọn con số đúng!";
       else if (mode === 3) instr.innerText = "Bé hãy chọn hình bên dưới liên quan nhất với hình phía trên!";
+      else if (mode === 4) instr.innerText = "Bấm vào biểu tượng LOA để nghe cách đọc tiếng Anh nhé!";
 
-      nextQuestion();
+      if (mode === 4) {
+        engCurrentIndex = 0;
+        renderEnglishMode();
+      } else {
+        nextQuestion();
+      }
+    }
+
+    function switchEngSubTab(subTab) {
+      englishSubTab = subTab;
+      engCurrentIndex = 0;
+      renderEnglishMode();
+    }
+
+    function renderEnglishMode() {
+      const container = document.getElementById('content-container');
+      container.innerHTML = '';
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'eng-wrapper';
+
+      // Subtabs bar
+      const subtabs = document.createElement('div');
+      subtabs.className = 'eng-subtabs';
+      subtabs.innerHTML = `
+        <button class="eng-subtab-btn ${englishSubTab === 1 ? 'active' : ''}" onclick="switchEngSubTab(1)">1. Đếm Số (0-100)</button>
+        <button class="eng-subtab-btn ${englishSubTab === 2 ? 'active' : ''}" onclick="switchEngSubTab(2)">2. Bảng Chữ Cái</button>
+        <button class="eng-subtab-btn ${englishSubTab === 3 ? 'active' : ''}" onclick="switchEngSubTab(3)">3. Từ Vựng & Màu Sắc</button>
+      `;
+      wrapper.appendChild(subtabs);
+
+      // Flashcard area
+      let currentDataList = [];
+      if (englishSubTab === 1) currentDataList = numberCardsList;
+      else if (englishSubTab === 2) currentDataList = ALPHABET_DATA;
+      else if (englishSubTab === 3) currentDataList = VOCAB_DATA;
+
+      const item = currentDataList[engCurrentIndex];
+      const card = document.createElement('div');
+      card.className = 'eng-card';
+
+      let speakText = "";
+
+      if (englishSubTab === 1) {
+        speakText = item.word;
+        card.innerHTML = `
+          <div class="speaker-btn" onclick="speakEnglish('${speakText}')" title="Phát âm">
+            <span class="speaker-icon">🔊</span>
+          </div>
+          <div class="eng-card-number">${item.num}</div>
+          <div class="eng-word">${item.word}</div>
+          <div class="eng-ipa">${item.ipa}</div>
+        `;
+      } else if (englishSubTab === 2) {
+        speakText = item.word;
+        card.innerHTML = `
+          <div class="speaker-btn" onclick="speakEnglish('${speakText}')" title="Phát âm">
+            <span class="speaker-icon">🔊</span>
+          </div>
+          <div class="eng-card-letter">${item.letter}</div>
+          <div class="eng-word">Letter ${item.word}</div>
+          <div class="eng-ipa">${item.ipa}</div>
+        `;
+      } else if (englishSubTab === 3) {
+        speakText = item.eng;
+        let visualHTML = '';
+        if (item.img) {
+          visualHTML = `<img class="eng-card-img" src="${item.img}" alt="${item.eng}">`;
+        } else if (item.colorHex) {
+          visualHTML = `<div class="eng-color-box" style="background-color: ${item.colorHex}"></div>`;
+        }
+
+        card.innerHTML = `
+          <div class="speaker-btn" onclick="speakEnglish('${speakText}')" title="Phát âm">
+            <span class="speaker-icon">🔊</span>
+          </div>
+          ${visualHTML}
+          <div class="eng-word">${item.eng}</div>
+          <div class="eng-ipa">${item.ipa}</div>
+          <div class="eng-vi">(${item.vi})</div>
+        `;
+      }
+
+      wrapper.appendChild(card);
+
+      // Bottom Navigation controls
+      const controls = document.createElement('div');
+      controls.className = 'eng-controls';
+      controls.innerHTML = `
+        <button class="eng-nav-btn" onclick="changeEngCard(-1, ${currentDataList.length})">◄ Trước</button>
+        <span class="eng-counter">${engCurrentIndex + 1} / ${currentDataList.length}</span>
+        <button class="eng-nav-btn" onclick="changeEngCard(1, ${currentDataList.length})">Tiếp ►</button>
+      `;
+      wrapper.appendChild(controls);
+
+      container.appendChild(wrapper);
+
+      // Tự động đọc giọng nói chuẩn khi chuyển thẻ
+      setTimeout(() => speakEnglish(speakText), 200);
+    }
+
+    function changeEngCard(delta, totalLength) {
+      engCurrentIndex += delta;
+      if (engCurrentIndex < 0) engCurrentIndex = totalLength - 1;
+      if (engCurrentIndex >= totalLength) engCurrentIndex = 0;
+      renderEnglishMode();
     }
 
     function clearCanvas() {
